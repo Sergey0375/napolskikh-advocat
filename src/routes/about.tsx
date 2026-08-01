@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { X, ExternalLink } from "lucide-react";
-import photo from "@/assets/advokat.png.asset.json";
+import photo from "@/assets/advokat.jpg.asset.json";
 import d1 from "@/assets/doc-1.jpg.asset.json";
 import d2 from "@/assets/doc-2.jpg.asset.json";
 import d3 from "@/assets/doc-3.jpg.asset.json";
@@ -57,32 +57,32 @@ function AboutPage() {
   return (
     <>
       <Section eyebrow="Об адвокате" title={site.name.replace("Адвокат ", "")}>
-        <div className="mt-10 grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-          <img
-            src={photo.url}
-            alt={`${site.name}, портрет`}
-            loading="lazy"
-            width={574}
-            height={738}
-            className="w-full rounded-xl border border-border object-cover"
-          />
+        <div className="mt-10 grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="space-y-4 text-muted-foreground">
             <p>
               {site.role}. {site.reg}. В праве с 2013 года, статус адвоката — с 2017-го. Начинала
               в арбитражной практике юридической фирмы, затем сосредоточилась на защите
-              предпринимателей и цифровых проектов.
+              предпринимателей и собственников бизнеса.
             </p>
             <p>
-              Сегодня основная часть практики — онлайн-школы, продюсерские центры и эксперты:
-              оферты и договоры, споры с учениками, защита прав на контент, налоговые и банковские
-              вопросы. Параллельно веду семейные и имущественные дела частных доверителей, где
-              важна конфиденциальность.
+              Сегодня основная часть практики — сопровождение компаний и ИП: договоры, споры с
+              контрагентами, защита прав на бренд, налоговые и банковские вопросы. Параллельно
+              веду семейные и имущественные дела частных доверителей, где важна
+              конфиденциальность.
             </p>
             <p>
               Принцип простой: сначала считаем, что выгоднее — переговоры или суд, и только потом
               выбираем инструменты. Я не берусь за дело, если не вижу для вас реального результата.
             </p>
           </div>
+          <img
+            src={photo.url}
+            alt={`${site.name}, портрет`}
+            loading="lazy"
+            width={659}
+            height={878}
+            className="w-full rounded-xl border border-border object-cover"
+          />
         </div>
       </Section>
 
