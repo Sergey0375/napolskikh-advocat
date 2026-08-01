@@ -124,7 +124,7 @@ function AboutPage() {
             <X className="size-5" />
           </button>
           <img
-            src={images[full]}
+            src={imageMap[diplomas[full]!.file]}
             alt={diplomas[full]?.title ?? "Документ"}
             className="max-h-[88vh] max-w-full rounded-lg border border-border object-contain"
             onClick={(e) => e.stopPropagation()}
