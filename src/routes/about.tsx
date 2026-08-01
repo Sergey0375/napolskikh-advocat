@@ -2,14 +2,26 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { X, ExternalLink } from "lucide-react";
 import photo from "@/assets/advokat.png.asset.json";
-import d1 from "@/assets/diploma-1.jpg";
-import d2 from "@/assets/diploma-2.jpg";
-import d3 from "@/assets/diploma-3.jpg";
-import d4 from "@/assets/diploma-4.jpg";
+import d1 from "@/assets/doc-1.jpg.asset.json";
+import d2 from "@/assets/doc-2.jpg.asset.json";
+import d3 from "@/assets/doc-3.jpg.asset.json";
+import d5 from "@/assets/doc-5.jpg.asset.json";
+import d6 from "@/assets/doc-6.jpg.asset.json";
+import d7 from "@/assets/doc-7.jpg.asset.json";
+import d8 from "@/assets/doc-8.jpg.asset.json";
 import { site, diplomas, publications } from "@/data/site";
 import { Section, CtaBand } from "@/components/site/Section";
 
-const images = [d1, d2, d3, d4];
+const imageMap: Record<string, string> = {
+  "doc-1": d1.url,
+  "doc-2": d2.url,
+  "doc-3": d3.url,
+  "doc-5": d5.url,
+  "doc-6": d6.url,
+  "doc-7": d7.url,
+  "doc-8": d8.url,
+};
+
 
 export const Route = createFileRoute("/about")({
   head: () => ({
