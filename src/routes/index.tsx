@@ -1,22 +1,22 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ShieldCheck, Scale, Clock3 } from "lucide-react";
-import photo from "@/assets/advokat.png.asset.json";
+import photo from "@/assets/advokat.jpg.asset.json";
 import { site, services, stages, cases, faq } from "@/data/site";
 import { Section, TelegramButton, CtaBand } from "@/components/site/Section";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: `${site.name} — адвокат для бизнеса, инфопроектов и семьи` },
+      { title: `${site.name} — адвокат для бизнеса и семьи` },
       {
         name: "description",
         content:
-          "Адвокат в Москве: защита инфобизнеса и предпринимателей, споры об интеллектуальной собственности, семейные и имущественные дела. Бесплатный разбор ситуации за 30 минут.",
+          "Адвокат в Москве: защита предпринимателей, арбитражные споры, интеллектуальная собственность, семейные и имущественные дела. Бесплатный разбор ситуации за 30 минут.",
       },
       { property: "og:title", content: `${site.name} — адвокат для бизнеса и семьи` },
       {
         property: "og:description",
-        content: "Защита инфобизнеса, споров о правах, семейных и имущественных интересов.",
+        content: "Защита бизнеса, споров о правах, семейных и имущественных интересов.",
       },
       { property: "og:url", content: "/" },
     ],
@@ -42,9 +42,9 @@ function Home() {
               <span className="mt-3 block neon-text">{site.tagline}</span>
             </h1>
             <p className="mt-6 max-w-xl text-muted-foreground">
-              Веду дела предпринимателей, продюсеров и владельцев онлайн-школ, а также частные
-              семейные и имущественные споры. Работаю по всей России: документы, переговоры и
-              большая часть заседаний — онлайн.
+              Веду дела предпринимателей и компаний, а также частные семейные и имущественные
+              споры. Работаю по всей России: документы, переговоры и большая часть заседаний —
+              дистанционно.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -76,8 +76,8 @@ function Home() {
             <img
               src={photo.url}
               alt={`${site.name}, адвокат`}
-              width={574}
-              height={738}
+              width={659}
+              height={878}
               fetchPriority="high"
               className="relative w-full rounded-xl border border-border object-cover"
             />
