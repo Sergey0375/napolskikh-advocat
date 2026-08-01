@@ -11,6 +11,13 @@ import d7 from "@/assets/doc-7.jpg.asset.json";
 import d8 from "@/assets/doc-8.jpg.asset.json";
 import { site, diplomas, publications } from "@/data/site";
 import { Section, CtaBand } from "@/components/site/Section";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const imageMap: Record<string, string> = {
   "doc-1": d1.url,
