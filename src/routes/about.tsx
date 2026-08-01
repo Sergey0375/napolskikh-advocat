@@ -2,14 +2,26 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { X, ExternalLink } from "lucide-react";
 import photo from "@/assets/advokat.png.asset.json";
-import d1 from "@/assets/diploma-1.jpg";
-import d2 from "@/assets/diploma-2.jpg";
-import d3 from "@/assets/diploma-3.jpg";
-import d4 from "@/assets/diploma-4.jpg";
+import d1 from "@/assets/doc-1.jpg.asset.json";
+import d2 from "@/assets/doc-2.jpg.asset.json";
+import d3 from "@/assets/doc-3.jpg.asset.json";
+import d5 from "@/assets/doc-5.jpg.asset.json";
+import d6 from "@/assets/doc-6.jpg.asset.json";
+import d7 from "@/assets/doc-7.jpg.asset.json";
+import d8 from "@/assets/doc-8.jpg.asset.json";
 import { site, diplomas, publications } from "@/data/site";
 import { Section, CtaBand } from "@/components/site/Section";
 
-const images = [d1, d2, d3, d4];
+const imageMap: Record<string, string> = {
+  "doc-1": d1.url,
+  "doc-2": d2.url,
+  "doc-3": d3.url,
+  "doc-5": d5.url,
+  "doc-6": d6.url,
+  "doc-7": d7.url,
+  "doc-8": d8.url,
+};
+
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -68,7 +80,7 @@ function AboutPage() {
       </Section>
 
       <Section eyebrow="Квалификация" title="Дипломы и удостоверения" className="pt-0">
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {diplomas.map((d, i) => (
             <button
               key={d.title}
@@ -77,13 +89,12 @@ function AboutPage() {
               className="panel group overflow-hidden p-3 text-left transition-colors hover:border-neon/50"
             >
               <img
-                src={images[i]}
+                src={imageMap[d.file]}
                 alt={`${d.title}, ${d.org}`}
                 loading="lazy"
-                width={800}
-                height={1120}
-                className="aspect-3/4 w-full rounded-md object-cover"
+                className="aspect-4/3 w-full rounded-md bg-white object-contain"
               />
+
               <p className="mt-3 text-sm">{d.title}</p>
               <p className="text-xs text-muted-foreground">
                 {d.org} · {d.year}
@@ -113,7 +124,7 @@ function AboutPage() {
             <X className="size-5" />
           </button>
           <img
-            src={images[full]}
+            src={imageMap[diplomas[full]!.file]}
             alt={diplomas[full]?.title ?? "Документ"}
             className="max-h-[88vh] max-w-full rounded-lg border border-border object-contain"
             onClick={(e) => e.stopPropagation()}
