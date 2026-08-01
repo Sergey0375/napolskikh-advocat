@@ -11,6 +11,13 @@ import d7 from "@/assets/doc-7.jpg.asset.json";
 import d8 from "@/assets/doc-8.jpg.asset.json";
 import { site, diplomas, publications } from "@/data/site";
 import { Section, CtaBand } from "@/components/site/Section";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const imageMap: Record<string, string> = {
   "doc-1": d1.url,
@@ -80,31 +87,36 @@ function AboutPage() {
       </Section>
 
       <Section eyebrow="Квалификация" title="Дипломы и удостоверения" className="pt-0">
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {diplomas.map((d, i) => (
-            <button
-              key={d.title}
-              type="button"
-              onClick={() => setFull(i)}
-              className="panel group overflow-hidden p-3 text-left transition-colors hover:border-neon/50"
-            >
-              <img
-                src={imageMap[d.file]}
-                alt={`${d.title}, ${d.org}`}
-                loading="lazy"
-                className="aspect-4/3 w-full rounded-md bg-white object-contain"
-              />
+        <Carousel opts={{ align: "start", loop: true }} className="mt-10">
+          <CarouselContent className="-ml-4">
+            {diplomas.map((d, i) => (
+              <CarouselItem key={d.title} className="pl-4 sm:basis-1/2 lg:basis-1/3">
+                <button
+                  type="button"
+                  onClick={() => setFull(i)}
+                  className="panel group h-full w-full overflow-hidden p-3 text-left transition-colors hover:border-neon/50"
+                >
+                  <img
+                    src={imageMap[d.file]}
+                    alt={`${d.title}, ${d.org}`}
+                    loading="lazy"
+                    className="aspect-4/3 w-full rounded-md bg-white object-contain"
+                  />
 
-              <p className="mt-3 text-sm">{d.title}</p>
-              <p className="text-xs text-muted-foreground">
-                {d.org} · {d.year}
-              </p>
-              <span className="mt-2 block text-xs text-neon opacity-0 transition-opacity group-hover:opacity-100">
-                Открыть во весь экран
-              </span>
-            </button>
-          ))}
-        </div>
+                  <p className="mt-3 text-sm">{d.title}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {d.org} · {d.year}
+                  </p>
+                  <span className="mt-2 block text-xs text-neon opacity-0 transition-opacity group-hover:opacity-100">
+                    Открыть во весь экран
+                  </span>
+                </button>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="-left-3 sm:-left-5" />
+          <CarouselNext className="-right-3 sm:-right-5" />
+        </Carousel>
       </Section>
 
       {full !== null && (
