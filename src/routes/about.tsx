@@ -80,7 +80,7 @@ function AboutPage() {
       </Section>
 
       <Section eyebrow="Квалификация" title="Дипломы и удостоверения" className="pt-0">
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {diplomas.map((d, i) => (
             <button
               key={d.title}
@@ -89,13 +89,12 @@ function AboutPage() {
               className="panel group overflow-hidden p-3 text-left transition-colors hover:border-neon/50"
             >
               <img
-                src={images[i]}
+                src={imageMap[d.file]}
                 alt={`${d.title}, ${d.org}`}
                 loading="lazy"
-                width={800}
-                height={1120}
-                className="aspect-3/4 w-full rounded-md object-cover"
+                className="aspect-4/3 w-full rounded-md bg-white object-contain"
               />
+
               <p className="mt-3 text-sm">{d.title}</p>
               <p className="text-xs text-muted-foreground">
                 {d.org} · {d.year}
