@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as CasesRouteImport } from './routes/cases'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as ServicesRouteImport } from './routes/services'
 
@@ -19,9 +21,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CasesRoute = CasesRouteImport.update({
   id: '/cases',
   path: '/cases',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FaqRoute = FaqRouteImport.update({
@@ -37,34 +49,42 @@ const ServicesRoute = ServicesRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/cases': typeof CasesRoute
+  '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/cases': typeof CasesRoute
+  '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/cases': typeof CasesRoute
+  '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cases' | '/faq' | '/services'
+  fullPaths: '/' | '/about' | '/cases' | '/contact' | '/faq' | '/services'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cases' | '/faq' | '/services'
-  id: '__root__' | '/' | '/cases' | '/faq' | '/services'
+  to: '/' | '/about' | '/cases' | '/contact' | '/faq' | '/services'
+  id: '__root__' | '/' | '/about' | '/cases' | '/contact' | '/faq' | '/services'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   CasesRoute: typeof CasesRoute
+  ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
   ServicesRoute: typeof ServicesRoute
 }
@@ -78,11 +98,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cases': {
       id: '/cases'
       path: '/cases'
       fullPath: '/cases'
       preLoaderRoute: typeof CasesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faq': {
@@ -104,10 +138,22 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   CasesRoute: CasesRoute,
+  ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
   ServicesRoute: ServicesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
