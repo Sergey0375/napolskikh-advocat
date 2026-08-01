@@ -32,8 +32,8 @@ function Home() {
   return (
     <>
       <section className="relative overflow-hidden border-b border-border">
-        <div className="pointer-events-none absolute inset-0 grid-lines opacity-30" />
-        <div className="pointer-events-none absolute -top-40 right-0 size-[520px] rounded-full bg-neon/10 blur-[130px]" />
+        <div className="pointer-events-none absolute -top-40 right-0 size-[560px] rounded-full bg-neon/15 blur-[150px]" />
+        <div className="pointer-events-none absolute -bottom-52 -left-24 size-[520px] rounded-full bg-primary/15 blur-[150px]" />
         <div className="relative mx-auto grid max-w-6xl gap-12 px-5 py-16 md:py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
             <p className="text-[11px] uppercase tracking-[0.22em] text-neon">{site.role}</p>
