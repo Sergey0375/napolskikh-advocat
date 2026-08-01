@@ -133,14 +133,15 @@
 
 @utility panel {
   background: linear-gradient(
-    180deg,
-    color-mix(in oklab, var(--surface) 92%, var(--neon) 3%),
-    var(--surface)
+    165deg,
+    color-mix(in oklab, var(--surface) 88%, var(--neon) 5%),
+    color-mix(in oklab, var(--background) 70%, var(--surface) 30%)
   );
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
+  border: 1px solid color-mix(in oklab, var(--border) 80%, var(--neon) 12%);
+  border-radius: var(--radius-md);
   box-shadow: var(--shadow-panel);
 }
+
 
 @utility grid-lines {
   background-image:
