@@ -8,9 +8,9 @@ export function Section({
   children,
   className = "",
 }: {
-  eyebrow?: string;
-  title?: string;
-  lead?: string;
+  eyebrow?: string | undefined;
+  title?: string | undefined;
+  lead?: string | undefined;
   children?: React.ReactNode;
   className?: string;
 }) {
