@@ -1,7 +1,7 @@
 export const site = {
   name: "Адвокат Напольских Татьяна Сергеевна",
   role: "член Московской коллегии адвокатов",
-  reg: "Реестровый номер 77/12345",
+  reg: "Реестровый номер 77/17444",
   tagline: "Защита бизнеса, собственности и семьи",
   telegram: "https://t.me/Tatiana_Napolskikh",
   telegramLabel: "@Tatiana_Napolskikh",
