@@ -84,6 +84,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: site.name },
       { name: "twitter:card", content: "summary_large_image" },
+      { title: "Напольских Татьяна адвокат" },
+      { property: "og:title", content: "Напольских Татьяна адвокат" },
+      { name: "twitter:title", content: "Напольских Татьяна адвокат" },
+      { name: "description", content: "Адвокат в Москве: защита предпринимателей, арбитражные споры, интеллектуальная собственность, семейные и имущественные дела." },
+      { property: "og:description", content: "Адвокат в Москве: защита предпринимателей, арбитражные споры, интеллектуальная собственность, семейные и имущественные дела." },
+      { name: "twitter:description", content: "Адвокат в Москве: защита предпринимателей, арбитражные споры, интеллектуальная собственность, семейные и имущественные дела." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7eb8e6a0-78ea-46a9-ab93-f80877ee4245/id-preview-a5a4bb66--5980042a-0711-4c5f-a5b2-696ef22dcae1.lovable.app-1785661262048.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7eb8e6a0-78ea-46a9-ab93-f80877ee4245/id-preview-a5a4bb66--5980042a-0711-4c5f-a5b2-696ef22dcae1.lovable.app-1785661262048.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -93,7 +101,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
     scripts: [
       {
