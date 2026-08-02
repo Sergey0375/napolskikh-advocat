@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ShieldCheck, Scale, Clock3 } from "lucide-react";
+import { ArrowRight, ShieldCheck, Scale, Clock3, BadgeCheck, CalendarDays } from "lucide-react";
 import photo from "@/assets/advokat.jpg.asset.json";
 import { site, services, stages, cases, faq } from "@/data/site";
 import { Section, TelegramButton, CtaBand } from "@/components/site/Section";
