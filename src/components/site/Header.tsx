@@ -55,6 +55,15 @@ export function Header() {
             <Send className="size-4" />
             Написать в Telegram
           </a>
+          <a
+            href={site.telegram}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Написать в Telegram"
+            className="inline-flex size-10 items-center justify-center rounded-md border border-neon/50 text-neon transition-colors hover:bg-neon hover:text-neon-foreground sm:hidden"
+          >
+            <Send className="size-4" />
+          </a>
           <button
             type="button"
             aria-label={open ? "Закрыть меню" : "Открыть меню"}
