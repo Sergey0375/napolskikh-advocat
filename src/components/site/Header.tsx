@@ -3,6 +3,10 @@ import { useState } from "react";
 import { Menu, X, Send } from "lucide-react";
 import { site } from "@/data/site";
 
+const nameWithoutTitle = site.name.replace(/^Адвокат\s+/, "");
+const [surname, ...firstNameParts] = nameWithoutTitle.split(" ");
+const firstName = firstNameParts.join(" ");
+
 const nav = [
   { to: "/", label: "Главная" },
   { to: "/services", label: "Услуги" },
