@@ -29,6 +29,18 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const currentYear = new Date().getFullYear();
+  const yearsInLaw = currentYear - site.experienceSince;
+  const yearsAdvocate = currentYear - site.advocateSince;
+
+  const pluralize = (n: number, one: string, few: string, many: string) => {
+    const mod10 = n % 10;
+    const mod100 = n % 100;
+    if (mod10 === 1 && mod100 !== 11) return `${n} ${one}`;
+    if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return `${n} ${few}`;
+    return `${n} ${many}`;
+  };
+
   return (
     <>
       <section className="relative overflow-hidden border-b border-border">
@@ -41,6 +53,22 @@ function Home() {
               {site.name.replace("Адвокат ", "")}
               <span className="mt-3 block neon-text">{site.tagline}</span>
             </h1>
+
+            <div className="mt-5 flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-surface/50 px-3 py-1.5 text-xs text-muted-foreground">
+                <BadgeCheck className="size-3.5 text-neon" />
+                Реестр № {site.registryNumber}
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-surface/50 px-3 py-1.5 text-xs text-muted-foreground">
+                <CalendarDays className="size-3.5 text-neon" />
+                В юриспруденции с {site.experienceSince}
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-surface/50 px-3 py-1.5 text-xs text-muted-foreground">
+                <Scale className="size-3.5 text-neon" />
+                Адвокат с {site.advocateSince}
+              </span>
+            </div>
+
             <p className="mt-6 max-w-xl text-muted-foreground">
               Веду дела предпринимателей и компаний, а также частные семейные и имущественные
               споры. Работаю по всей России: документы, переговоры и большая часть заседаний —
@@ -59,9 +87,9 @@ function Home() {
 
             <dl className="mt-12 grid grid-cols-3 gap-4 border-t border-border pt-8">
               {[
-                { k: "12 лет", v: "в праве, из них 9 в адвокатуре" },
+                { k: pluralize(yearsInLaw, "год", "года", "лет"), v: "в юриспруденции" },
+                { k: pluralize(yearsAdvocate, "год", "года", "лет"), v: "статус адвоката" },
                 { k: "180+", v: "завершённых дел" },
-                { k: "84%", v: "дел решены в пользу доверителя" },
               ].map((s) => (
                 <div key={s.k}>
                   <dt className="font-display text-2xl text-neon md:text-3xl">{s.k}</dt>
