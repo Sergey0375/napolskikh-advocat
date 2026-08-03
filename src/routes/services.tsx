@@ -22,6 +22,30 @@ export const Route = createFileRoute("/services")({
       { property: "og:url", content: `${SITE_URL}/services` },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/services` }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "Направления практики адвоката",
+          itemListElement: services.map((s, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            item: {
+              "@type": "Service",
+              name: s.title,
+              description: s.short,
+              serviceType: s.title,
+              url: `${SITE_URL}/services`,
+              areaServed: { "@type": "Country", name: "Россия" },
+              provider: { "@id": `${SITE_URL}/#legalservice` },
+            },
+          })),
+        }),
+      },
+    ],
+
   }),
   component: ServicesPage,
 });
