@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Send } from "lucide-react";
+import { AlertCircle, Loader2, Send } from "lucide-react";
 import { site } from "@/data/site";
 
 const schema = z.object({
