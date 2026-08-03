@@ -164,25 +164,47 @@ export function ContactForm() {
   );
 }
 
+function inputClass(hasError: boolean) {
+  return [
+    "w-full rounded-md border bg-background px-4 py-3 text-sm outline-none transition-colors",
+    "placeholder:text-muted-foreground/70 focus:border-neon focus:ring-2 focus:ring-neon/25",
+    hasError ? "border-destructive focus:border-destructive focus:ring-destructive/25" : "border-input",
+  ].join(" ");
+}
+
 function Field({
   label,
   error,
   hint,
+  htmlFor,
   children,
 }: {
   label: string;
   error?: string | undefined;
   hint?: string | undefined;
+  htmlFor?: string | undefined;
   children: React.ReactNode;
 }) {
   return (
-    <label className="block">
-      <span className="mb-2 flex items-center justify-between text-xs uppercase tracking-[0.14em] text-muted-foreground">
+    <div className="block">
+      <label
+        htmlFor={htmlFor}
+        className="mb-2 flex items-center justify-between text-xs uppercase tracking-[0.14em] text-muted-foreground"
+      >
         {label}
         {hint && <span className="tracking-normal normal-case">{hint}</span>}
-      </span>
+      </label>
       {children}
-      {error && <span className="mt-2 block text-xs text-destructive">{error}</span>}
-    </label>
+      {error && (
+        <span
+          id={htmlFor ? `${htmlFor}-error` : undefined}
+          className="mt-2 flex items-center gap-1.5 text-xs text-destructive"
+        >
+          <AlertCircle className="size-3.5 shrink-0" />
+          {error}
+        </span>
+      )}
+    </div>
   );
 }
+
