@@ -35,20 +35,34 @@ function ServicesPage() {
         title="Направления практики"
         lead="Нажмите на услугу, чтобы увидеть состав работ. Если вашей ситуации нет в списке — напишите, подскажу профильного коллегу."
       >
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
-          {services.map((s) => (
-            <article key={s.slug} id={s.slug} className="panel scroll-mt-24 p-6 md:p-8">
-              <h2 className="text-xl">{s.title}</h2>
-              <p className="mt-3 text-sm text-muted-foreground">{s.short}</p>
-              <button
-                type="button"
-                onClick={() => setActive(s)}
-                className="mt-6 inline-flex items-center rounded-md border border-neon/50 px-4 py-2 text-sm font-medium text-neon transition-colors hover:bg-neon hover:text-neon-foreground"
+        <div className="mt-10 grid gap-5 md:grid-cols-2">
+          {services.map((s) => {
+            const Icon = serviceIcons[s.slug] ?? fallbackServiceIcon;
+            return (
+              <article
+                key={s.slug}
+                id={s.slug}
+                className="panel group relative scroll-mt-24 overflow-hidden p-6 transition-all duration-300 hover:-translate-y-1 hover:border-neon/60 hover:shadow-[0_24px_60px_-28px_var(--neon)] md:p-8"
               >
-                Состав работ
-              </button>
-            </article>
-          ))}
+                <span className="pointer-events-none absolute -right-16 -top-16 size-40 rounded-full bg-neon/10 opacity-0 blur-3xl transition-opacity duration-300 group-hover:opacity-100" />
+                <span className="relative inline-flex size-12 items-center justify-center rounded-lg border border-neon/25 bg-neon/10 text-neon transition-colors duration-300 group-hover:bg-neon group-hover:text-neon-foreground">
+                  <Icon className="size-5" />
+                </span>
+                <h2 className="relative mt-5 text-xl leading-snug">{s.title}</h2>
+                <p className="relative mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {s.short}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setActive(s)}
+                  className="relative mt-6 inline-flex items-center gap-2 rounded-md border border-neon/50 px-4 py-2 text-sm font-medium text-neon transition-colors hover:bg-neon hover:text-neon-foreground"
+                >
+                  Состав работ
+                  <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </button>
+              </article>
+            );
+          })}
         </div>
       </Section>
 
