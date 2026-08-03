@@ -47,6 +47,36 @@ export const Route = createFileRoute("/about")({
       { property: "og:url", content: `${SITE_URL}/about` },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/about` }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          mainEntity: {
+            "@type": "Person",
+            "@id": `${SITE_URL}/#attorney`,
+            name: "Напольских Татьяна Сергеевна",
+            jobTitle: "Адвокат",
+            description: `${site.role}. ${site.reg}.`,
+            url: `${SITE_URL}/about`,
+            telephone: site.phone,
+            email: site.email,
+            identifier: site.registryNumber,
+            memberOf: { "@type": "Organization", name: "Московская коллегия адвокатов" },
+            sameAs: [site.telegram],
+            hasCredential: diplomas.map((d) => ({
+              "@type": "EducationalOccupationalCredential",
+              name: d.title,
+              credentialCategory: "diploma",
+              recognizedBy: { "@type": "Organization", name: d.org },
+              dateCreated: String(d.year),
+            })),
+          },
+        }),
+      },
+    ],
+
   }),
   component: AboutPage,
 });
