@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { cases, site } from "@/data/site";
+import { cases, site, SITE_URL } from "@/data/site";
 import { Section, CtaBand } from "@/components/site/Section";
 
 export const Route = createFileRoute("/cases")({
@@ -16,9 +16,9 @@ export const Route = createFileRoute("/cases")({
         property: "og:description",
         content: "Результаты по делам бизнеса, арбитража, семейных и экономических споров.",
       },
-      { property: "og:url", content: "/cases" },
+      { property: "og:url", content: `${SITE_URL}/cases/` },
     ],
-    links: [{ rel: "canonical", href: "/cases" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/cases` }],
   }),
   component: CasesPage,
 });

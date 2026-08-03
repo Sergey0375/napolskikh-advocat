@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { faq, site } from "@/data/site";
+import { faq, site, SITE_URL } from "@/data/site";
 import { Section, CtaBand } from "@/components/site/Section";
 import {
   Accordion,
@@ -22,9 +22,9 @@ export const Route = createFileRoute("/faq")({
         property: "og:description",
         content: "Ответы на частые вопросы доверителей о работе с адвокатом.",
       },
-      { property: "og:url", content: "/faq" },
+      { property: "og:url", content: `${SITE_URL}/faq/` },
     ],
-    links: [{ rel: "canonical", href: "/faq" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/faq` }],
     scripts: [
       {
         type: "application/ld+json",

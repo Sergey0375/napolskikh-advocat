@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Send, Phone, Mail, MapPin, Clock } from "lucide-react";
-import { site } from "@/data/site";
+import { site, SITE_URL } from "@/data/site";
 import { Section } from "@/components/site/Section";
 import { ContactForm } from "@/components/site/ContactForm";
 
@@ -15,9 +15,9 @@ export const Route = createFileRoute("/contact")({
       },
       { property: "og:title", content: `Контакты адвоката — ${site.name}` },
       { property: "og:description", content: "Telegram, телефон и форма обращения к адвокату." },
-      { property: "og:url", content: "/contact" },
+      { property: "og:url", content: `${SITE_URL}/contact/` },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/contact` }],
   }),
   component: ContactPage,
 });

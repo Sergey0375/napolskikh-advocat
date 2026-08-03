@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ShieldCheck, Scale, Clock3, BadgeCheck, CalendarDays } from "lucide-react";
 import photo from "@/assets/advokat.jpg.asset.json";
-import { site, services, stages, cases, faq } from "@/data/site";
+import { site, services, stages, cases, faq, SITE_URL } from "@/data/site";
 import { Section, TelegramButton, CtaBand } from "@/components/site/Section";
 import { serviceIcons, fallbackServiceIcon } from "@/components/site/serviceIcons";
 
@@ -19,10 +19,10 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Адвокат в Москве: защита предпринимателей, арбитражные споры, интеллектуальная собственность, семейные и имущественные дела.",
       },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: `${SITE_URL}/` },
     ],
     links: [
-      { rel: "canonical", href: "/" },
+      { rel: "canonical", href: `${SITE_URL}` },
       { rel: "preload", as: "image", href: photo.url },
     ],
   }),
