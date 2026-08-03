@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Send, Phone, Mail, MapPin, Clock } from "lucide-react";
-import { site } from "@/data/site";
+import { site, SITE_URL } from "@/data/site";
 import { Section } from "@/components/site/Section";
 import { ContactForm } from "@/components/site/ContactForm";
 
@@ -15,9 +15,44 @@ export const Route = createFileRoute("/contact")({
       },
       { property: "og:title", content: `Контакты адвоката — ${site.name}` },
       { property: "og:description", content: "Telegram, телефон и форма обращения к адвокату." },
-      { property: "og:url", content: "/contact" },
+      { property: "og:url", content: `${SITE_URL}/contact` },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/contact` }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          url: `${SITE_URL}/contact`,
+          mainEntity: {
+            "@type": ["LegalService", "Attorney"],
+            "@id": `${SITE_URL}/#legalservice`,
+            name: site.name,
+            telephone: site.phone,
+            email: site.email,
+            url: SITE_URL,
+            sameAs: [site.telegram],
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Москва",
+              addressCountry: "RU",
+            },
+            contactPoint: [
+              {
+                "@type": "ContactPoint",
+                contactType: "customer service",
+                telephone: site.phone,
+                email: site.email,
+                availableLanguage: "Russian",
+                areaServed: "RU",
+              },
+            ],
+          },
+        }),
+      },
+    ],
+
   }),
   component: ContactPage,
 });

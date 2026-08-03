@@ -1,28 +1,31 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ShieldCheck, Scale, Clock3, BadgeCheck, CalendarDays } from "lucide-react";
 import photo from "@/assets/advokat.jpg.asset.json";
-import { site, services, stages, cases, faq } from "@/data/site";
+import { site, services, stages, cases, faq, SITE_URL } from "@/data/site";
 import { Section, TelegramButton, CtaBand } from "@/components/site/Section";
 import { serviceIcons, fallbackServiceIcon } from "@/components/site/serviceIcons";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: `${site.name} — адвокат для бизнеса и семьи` },
+      { title: "Адвокат Напольских Татьяна — Москва, защита бизнеса и семьи" },
       {
         name: "description",
         content:
-          "Адвокат в Москве: защита предпринимателей, арбитражные споры, интеллектуальная собственность, семейные и имущественные дела.",
+          "Адвокат в Москве: защита предпринимателей, арбитражные споры, недвижимость и земля, семейные и наследственные дела. Разбор ситуации — 30 минут.",
       },
-      { property: "og:title", content: `${site.name} — адвокат для бизнеса и семьи` },
+      { property: "og:title", content: "Адвокат Напольских Татьяна — Москва" },
       {
         property: "og:description",
-        content: "Адвокат в Москве: защита предпринимателей, арбитражные споры, интеллектуальная собственность, семейные и имущественные дела.",
+        content:
+          "Защита бизнеса, недвижимости и семьи: арбитраж, сделки, споры с госорганами, семейные и наследственные дела.",
       },
-      { property: "og:url", content: "/" },
+      { property: "og:type", content: "website" },
+
+      { property: "og:url", content: `${SITE_URL}/` },
     ],
     links: [
-      { rel: "canonical", href: "/" },
+      { rel: "canonical", href: `${SITE_URL}/` },
       { rel: "preload", as: "image", href: photo.url },
     ],
   }),

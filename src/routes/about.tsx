@@ -9,7 +9,7 @@ import d5 from "@/assets/doc-5.jpg.asset.json";
 import d6 from "@/assets/doc-6.jpg.asset.json";
 import d7 from "@/assets/doc-7.jpg.asset.json";
 import d8 from "@/assets/doc-8.jpg.asset.json";
-import { site, diplomas, publications } from "@/data/site";
+import { site, diplomas, publications, SITE_URL } from "@/data/site";
 import { Section, CtaBand } from "@/components/site/Section";
 import {
   Carousel,
@@ -44,9 +44,39 @@ export const Route = createFileRoute("/about")({
         property: "og:description",
         content: "Квалификация, дипломы и публикации адвоката.",
       },
-      { property: "og:url", content: "/about" },
+      { property: "og:url", content: `${SITE_URL}/about` },
     ],
-    links: [{ rel: "canonical", href: "/about" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/about` }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          mainEntity: {
+            "@type": "Person",
+            "@id": `${SITE_URL}/#attorney`,
+            name: "Напольских Татьяна Сергеевна",
+            jobTitle: "Адвокат",
+            description: `${site.role}. ${site.reg}.`,
+            url: `${SITE_URL}/about`,
+            telephone: site.phone,
+            email: site.email,
+            identifier: site.registryNumber,
+            memberOf: { "@type": "Organization", name: "Московская коллегия адвокатов" },
+            sameAs: [site.telegram],
+            hasCredential: diplomas.map((d) => ({
+              "@type": "EducationalOccupationalCredential",
+              name: d.title,
+              credentialCategory: "diploma",
+              recognizedBy: { "@type": "Organization", name: d.org },
+              dateCreated: String(d.year),
+            })),
+          },
+        }),
+      },
+    ],
+
   }),
   component: AboutPage,
 });

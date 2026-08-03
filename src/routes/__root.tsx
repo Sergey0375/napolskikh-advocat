@@ -14,7 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Toaster } from "@/components/ui/sonner";
-import { site } from "@/data/site";
+import { site, services, SITE_URL } from "@/data/site";
 
 function NotFoundComponent() {
   return (
@@ -79,17 +79,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: `${site.name} — защита бизнеса и семьи` },
-      { name: "description", content: site.tagline },
+      { title: "Напольских Татьяна — адвокат в Москве" },
+      {
+        name: "description",
+        content:
+          "Адвокат в Москве: защита предпринимателей, арбитражные споры, недвижимость и земельное право, семейные и наследственные дела.",
+      },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: site.name },
+      { property: "og:locale", content: "ru_RU" },
+      { property: "og:title", content: "Напольских Татьяна — адвокат в Москве" },
+      {
+        property: "og:description",
+        content:
+          "Адвокат в Москве: защита предпринимателей, арбитражные споры, недвижимость и земельное право, семейные и наследственные дела.",
+      },
       { name: "twitter:card", content: "summary_large_image" },
-      { title: "Напольских Татьяна адвокат" },
-      { property: "og:title", content: "Напольских Татьяна адвокат" },
-      { name: "twitter:title", content: "Напольских Татьяна адвокат" },
-      { name: "description", content: "Адвокат в Москве: защита предпринимателей, арбитражные споры, интеллектуальная собственность, семейные и имущественные дела." },
-      { property: "og:description", content: "Адвокат в Москве: защита предпринимателей, арбитражные споры, интеллектуальная собственность, семейные и имущественные дела." },
-      { name: "twitter:description", content: "Адвокат в Москве: защита предпринимателей, арбитражные споры, интеллектуальная собственность, семейные и имущественные дела." },
+      { name: "twitter:title", content: "Напольских Татьяна — адвокат в Москве" },
+      {
+        name: "twitter:description",
+        content:
+          "Адвокат в Москве: защита предпринимателей, арбитражные споры, недвижимость и земельное право, семейные и наследственные дела.",
+      },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7eb8e6a0-78ea-46a9-ab93-f80877ee4245/id-preview-a5a4bb66--5980042a-0711-4c5f-a5b2-696ef22dcae1.lovable.app-1785661262048.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7eb8e6a0-78ea-46a9-ab93-f80877ee4245/id-preview-a5a4bb66--5980042a-0711-4c5f-a5b2-696ef22dcae1.lovable.app-1785661262048.png" },
     ],
@@ -107,17 +118,76 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "Attorney",
-          name: site.name,
-          description: site.tagline,
-          telephone: site.phone,
-          email: site.email,
-          areaServed: "RU",
-          address: { "@type": "PostalAddress", addressLocality: "Москва", addressCountry: "RU" },
+          "@graph": [
+            {
+              "@type": ["LegalService", "Attorney"],
+              "@id": `${SITE_URL}/#legalservice`,
+              name: site.name,
+              description: site.tagline,
+              url: SITE_URL,
+              telephone: site.phone,
+              email: site.email,
+              priceRange: "₽₽",
+              areaServed: { "@type": "Country", name: "Россия" },
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Москва",
+                addressCountry: "RU",
+              },
+              openingHoursSpecification: [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                  opens: "10:00",
+                  closes: "19:00",
+                },
+              ],
+              sameAs: [site.telegram],
+              knowsLanguage: "ru",
+              provider: { "@id": `${SITE_URL}/#attorney` },
+              hasOfferCatalog: {
+                "@type": "OfferCatalog",
+                name: "Направления практики",
+                itemListElement: services.map((s) => ({
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: s.title,
+                    description: s.short,
+                    serviceType: s.title,
+                    url: `${SITE_URL}/services`,
+                  },
+                })),
+              },
+            },
+            {
+              "@type": "Person",
+              "@id": `${SITE_URL}/#attorney`,
+              name: "Напольских Татьяна Сергеевна",
+              jobTitle: "Адвокат",
+              description: `${site.role}. ${site.reg}.`,
+              url: `${SITE_URL}/about`,
+              telephone: site.phone,
+              email: site.email,
+              identifier: site.registryNumber,
+              memberOf: { "@type": "Organization", name: "Московская коллегия адвокатов" },
+              worksFor: { "@id": `${SITE_URL}/#legalservice` },
+              sameAs: [site.telegram],
+            },
+            {
+              "@type": "WebSite",
+              "@id": `${SITE_URL}/#website`,
+              url: SITE_URL,
+              name: site.name,
+              inLanguage: "ru-RU",
+              publisher: { "@id": `${SITE_URL}/#legalservice` },
+            },
+          ],
         }),
       },
     ],
   }),
+
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
