@@ -1,5 +1,8 @@
+export const SITE_URL = "https://napolskikh-advocat.lovable.app";
+
 export const site = {
   name: "Адвокат Напольских Татьяна Сергеевна",
+
   role: "член Московской коллегии адвокатов",
   reg: "Реестровый номер 77/17444",
   registryNumber: "77/17444",
