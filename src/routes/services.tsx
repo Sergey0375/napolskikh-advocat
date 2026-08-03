@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Check, X } from "lucide-react";
+import { Check, X, ArrowRight } from "lucide-react";
 import { services, site, type Service } from "@/data/site";
 import { Section, CtaBand, TelegramButton } from "@/components/site/Section";
+import { serviceIcons, fallbackServiceIcon } from "@/components/site/serviceIcons";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
