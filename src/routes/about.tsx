@@ -104,34 +104,44 @@ function AboutPage() {
         <Carousel opts={{ align: "start", loop: true }} className="mt-10">
           <CarouselContent className="-ml-4">
             {diplomas.map((d, i) => (
-              <CarouselItem key={d.title} className="pl-4 sm:basis-1/2 lg:basis-1/3">
+              <CarouselItem
+                key={d.title}
+                className="basis-[85%] pl-4 sm:basis-1/2 lg:basis-1/3"
+              >
                 <button
                   type="button"
                   onClick={() => setFull(i)}
-                  className="panel group h-full w-full overflow-hidden p-3 text-left transition-colors hover:border-neon/50"
+                  aria-label={`Открыть документ: ${d.title}`}
+                  className="panel group h-full w-full overflow-hidden p-3 text-left transition-all hover:-translate-y-1 hover:border-neon/50 hover:shadow-[0_18px_40px_-24px_var(--neon)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon/60"
                 >
-                  <img
-                    src={imageMap[d.file]}
-                    alt={`${d.title}, ${d.org}`}
-                    loading="lazy"
-                    className="aspect-4/3 w-full rounded-md bg-white object-contain"
-                  />
+                  <div className="relative overflow-hidden rounded-md bg-white">
+                    <img
+                      src={imageMap[d.file]}
+                      alt={`${d.title}, ${d.org}`}
+                      loading="lazy"
+                      className="aspect-4/3 w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                    <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-background/85 px-3 py-1.5 text-center text-xs text-neon opacity-0 transition-opacity group-hover:opacity-100">
+                      Открыть во весь экран
+                    </span>
+                  </div>
 
-                  <p className="mt-3 text-sm">{d.title}</p>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="mt-3 text-sm leading-snug">{d.title}</p>
+                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
                     {d.org} · {d.year}
                   </p>
-                  <span className="mt-2 block text-xs text-neon opacity-0 transition-opacity group-hover:opacity-100">
-                    Открыть во весь экран
-                  </span>
                 </button>
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="-left-3 sm:-left-5" />
-          <CarouselNext className="-right-3 sm:-right-5" />
+          <CarouselPrevious className="static mt-6 mr-2 inline-flex translate-y-0 sm:absolute sm:-left-5 sm:mt-0 sm:mr-0 sm:-translate-y-1/2" />
+          <CarouselNext className="static mt-6 inline-flex translate-y-0 sm:absolute sm:-right-5 sm:mt-0 sm:-translate-y-1/2" />
         </Carousel>
+        <p className="mt-4 text-xs text-muted-foreground sm:hidden">
+          Листайте карточки свайпом или стрелками — нажмите, чтобы открыть документ целиком.
+        </p>
       </Section>
+
 
       {full !== null && (
         <div

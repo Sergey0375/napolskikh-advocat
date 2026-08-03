@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Send } from "lucide-react";
+import { AlertCircle, Loader2, Send } from "lucide-react";
 import { site } from "@/data/site";
 
 const schema = z.object({
@@ -96,77 +96,115 @@ export function ContactForm() {
         className="hidden"
       />
 
-      <Field label="Как к вам обращаться" error={errors.name}>
+      <Field label="Как к вам обращаться" error={errors.name} htmlFor="cf-name">
         <input
+          id="cf-name"
           value={values.name}
           onChange={(e) => set("name", e.target.value)}
           maxLength={LIMITS.name}
           placeholder="Имя"
-          className="w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-neon"
+          autoComplete="name"
+          aria-invalid={!!errors.name}
+          aria-describedby={errors.name ? "cf-name-error" : undefined}
+          className={inputClass(!!errors.name)}
         />
       </Field>
 
-      <Field label="Телефон, e-mail или Telegram" error={errors.contact}>
+      <Field label="Телефон, e-mail или Telegram" error={errors.contact} htmlFor="cf-contact">
         <input
+          id="cf-contact"
           value={values.contact}
           onChange={(e) => set("contact", e.target.value)}
           maxLength={LIMITS.contact}
           placeholder="+7 ... или @nickname"
-          className="w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-neon"
+          aria-invalid={!!errors.contact}
+          aria-describedby={errors.contact ? "cf-contact-error" : undefined}
+          className={inputClass(!!errors.contact)}
         />
       </Field>
 
       <Field
         label="Кратко о ситуации"
         error={errors.message}
+        htmlFor="cf-message"
         hint={`${values.message.length} / ${LIMITS.message}`}
       >
         <textarea
+          id="cf-message"
           value={values.message}
           onChange={(e) => set("message", e.target.value)}
           maxLength={LIMITS.message}
           rows={5}
           placeholder="Что произошло, какие документы есть, чего хотите добиться"
-          className="w-full resize-y rounded-md border border-input bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-neon"
+          aria-invalid={!!errors.message}
+          aria-describedby={errors.message ? "cf-message-error" : undefined}
+          className={`${inputClass(!!errors.message)} resize-y`}
         />
       </Field>
 
       <button
         type="submit"
         disabled={busy}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-neon px-6 py-3 text-sm font-semibold text-neon-foreground transition-opacity disabled:opacity-60"
+        className="group inline-flex w-full items-center justify-center gap-2 rounded-md bg-neon px-6 py-3 text-sm font-semibold text-neon-foreground shadow-[0_14px_36px_-18px_var(--neon)] transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_44px_-18px_var(--neon)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:translate-y-0 disabled:opacity-60"
       >
-        <Send className="size-4" />
+        {busy ? (
+          <Loader2 className="size-4 animate-spin" />
+        ) : (
+          <Send className="size-4 transition-transform group-hover:translate-x-0.5" />
+        )}
         {busy ? "Отправляю…" : "Отправить и открыть Telegram"}
       </button>
 
-      <p className="text-xs text-muted-foreground">
+      <p className="text-xs leading-relaxed text-muted-foreground">
         Нажимая кнопку, вы соглашаетесь на обработку персональных данных. Данные используются
         только для ответа на обращение.
       </p>
+
     </form>
   );
+}
+
+function inputClass(hasError: boolean) {
+  return [
+    "w-full rounded-md border bg-background px-4 py-3 text-sm outline-none transition-colors",
+    "placeholder:text-muted-foreground/70 focus:border-neon focus:ring-2 focus:ring-neon/25",
+    hasError ? "border-destructive focus:border-destructive focus:ring-destructive/25" : "border-input",
+  ].join(" ");
 }
 
 function Field({
   label,
   error,
   hint,
+  htmlFor,
   children,
 }: {
   label: string;
   error?: string | undefined;
   hint?: string | undefined;
+  htmlFor?: string | undefined;
   children: React.ReactNode;
 }) {
   return (
-    <label className="block">
-      <span className="mb-2 flex items-center justify-between text-xs uppercase tracking-[0.14em] text-muted-foreground">
+    <div className="block">
+      <label
+        htmlFor={htmlFor}
+        className="mb-2 flex items-center justify-between text-xs uppercase tracking-[0.14em] text-muted-foreground"
+      >
         {label}
         {hint && <span className="tracking-normal normal-case">{hint}</span>}
-      </span>
+      </label>
       {children}
-      {error && <span className="mt-2 block text-xs text-destructive">{error}</span>}
-    </label>
+      {error && (
+        <span
+          id={htmlFor ? `${htmlFor}-error` : undefined}
+          className="mt-2 flex items-center gap-1.5 text-xs text-destructive"
+        >
+          <AlertCircle className="size-3.5 shrink-0" />
+          {error}
+        </span>
+      )}
+    </div>
   );
 }
+
