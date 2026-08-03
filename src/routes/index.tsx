@@ -3,6 +3,7 @@ import { ArrowRight, ShieldCheck, Scale, Clock3, BadgeCheck, CalendarDays } from
 import photo from "@/assets/advokat.jpg.asset.json";
 import { site, services, stages, cases, faq } from "@/data/site";
 import { Section, TelegramButton, CtaBand } from "@/components/site/Section";
+import { serviceIcons, fallbackServiceIcon } from "@/components/site/serviceIcons";
 
 export const Route = createFileRoute("/")({
   head: () => ({
