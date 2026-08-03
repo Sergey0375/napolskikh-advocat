@@ -3,6 +3,7 @@ import { ArrowRight, ShieldCheck, Scale, Clock3, BadgeCheck, CalendarDays } from
 import photo from "@/assets/advokat.jpg.asset.json";
 import { site, services, stages, cases, faq } from "@/data/site";
 import { Section, TelegramButton, CtaBand } from "@/components/site/Section";
+import { serviceIcons, fallbackServiceIcon } from "@/components/site/serviceIcons";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -118,21 +119,31 @@ function Home() {
         title="С какими задачами ко мне приходят"
         lead="Шесть направлений, в которых у меня есть системная практика, а не единичные дела."
       >
-        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((s) => (
-            <Link
-              key={s.slug}
-              to="/services"
-              hash={s.slug}
-              className="panel group p-6 transition-colors hover:border-neon/50"
-            >
-              <h3 className="text-lg">{s.title}</h3>
-              <p className="mt-3 text-sm text-muted-foreground">{s.short}</p>
-              <span className="mt-5 inline-flex items-center gap-2 text-sm text-neon opacity-80 transition-opacity group-hover:opacity-100">
-                Подробнее <ArrowRight className="size-4" />
-              </span>
-            </Link>
-          ))}
+        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {services.map((s) => {
+            const Icon = serviceIcons[s.slug] ?? fallbackServiceIcon;
+            return (
+              <Link
+                key={s.slug}
+                to="/services"
+                hash={s.slug}
+                className="panel group relative flex flex-col overflow-hidden p-6 transition-all duration-300 hover:-translate-y-1 hover:border-neon/60 hover:shadow-[0_24px_60px_-28px_var(--neon)]"
+              >
+                <span className="pointer-events-none absolute -right-16 -top-16 size-40 rounded-full bg-neon/10 opacity-0 blur-3xl transition-opacity duration-300 group-hover:opacity-100" />
+                <span className="relative inline-flex size-11 items-center justify-center rounded-lg border border-neon/25 bg-neon/10 text-neon transition-colors duration-300 group-hover:bg-neon group-hover:text-neon-foreground">
+                  <Icon className="size-5" />
+                </span>
+                <h3 className="relative mt-5 text-lg leading-snug">{s.title}</h3>
+                <p className="relative mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {s.short}
+                </p>
+                <span className="relative mt-6 inline-flex items-center gap-2 text-sm font-medium text-neon">
+                  Подробнее
+                  <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
+              </Link>
+            );
+          })}
         </div>
       </Section>
 
