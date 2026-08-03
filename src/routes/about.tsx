@@ -44,7 +44,7 @@ export const Route = createFileRoute("/about")({
         property: "og:description",
         content: "Квалификация, дипломы и публикации адвоката.",
       },
-      { property: "og:url", content: `${SITE_URL}/about/` },
+      { property: "og:url", content: `${SITE_URL}/about` },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/about` }],
   }),

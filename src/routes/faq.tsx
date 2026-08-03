@@ -22,7 +22,7 @@ export const Route = createFileRoute("/faq")({
         property: "og:description",
         content: "Ответы на частые вопросы доверителей о работе с адвокатом.",
       },
-      { property: "og:url", content: `${SITE_URL}/faq/` },
+      { property: "og:url", content: `${SITE_URL}/faq` },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/faq` }],
     scripts: [

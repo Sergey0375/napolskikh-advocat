@@ -22,7 +22,7 @@ export const Route = createFileRoute("/")({
       { property: "og:url", content: `${SITE_URL}/` },
     ],
     links: [
-      { rel: "canonical", href: `${SITE_URL}` },
+      { rel: "canonical", href: `${SITE_URL}/` },
       { rel: "preload", as: "image", href: photo.url },
     ],
   }),

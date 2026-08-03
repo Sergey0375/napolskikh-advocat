@@ -19,7 +19,7 @@ export const Route = createFileRoute("/services")({
         property: "og:description",
         content: "Шесть направлений практики с понятным составом работ и стоимостью по этапам.",
       },
-      { property: "og:url", content: `${SITE_URL}/services/` },
+      { property: "og:url", content: `${SITE_URL}/services` },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/services` }],
   }),

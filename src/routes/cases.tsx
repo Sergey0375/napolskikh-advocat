@@ -16,7 +16,7 @@ export const Route = createFileRoute("/cases")({
         property: "og:description",
         content: "Результаты по делам бизнеса, арбитража, семейных и экономических споров.",
       },
-      { property: "og:url", content: `${SITE_URL}/cases/` },
+      { property: "og:url", content: `${SITE_URL}/cases` },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/cases` }],
   }),

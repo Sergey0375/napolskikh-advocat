@@ -15,7 +15,7 @@ export const Route = createFileRoute("/contact")({
       },
       { property: "og:title", content: `Контакты адвоката — ${site.name}` },
       { property: "og:description", content: "Telegram, телефон и форма обращения к адвокату." },
-      { property: "og:url", content: `${SITE_URL}/contact/` },
+      { property: "og:url", content: `${SITE_URL}/contact` },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/contact` }],
   }),
