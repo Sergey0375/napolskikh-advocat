@@ -198,7 +198,7 @@ function AboutPage() {
         </div>
       )}
 
-      <Section eyebrow="Медиа" title="Публикации" className="pt-0">
+      <Section eyebrow="Медиа" title="Мои публикации" className="pt-0">
         <ul className="mt-10 divide-y divide-border panel">
           {publications.map((p) => (
             <li key={p.title}>
