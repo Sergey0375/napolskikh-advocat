@@ -252,6 +252,12 @@ export const publications = [
     year: "2023",
     url: "https://probankrotstvo.ru/news/vs-usomnilsia-v-bespristrastnosti-i-nezavisimosti-au-ot-pervogo-zaiavitelia-i-dolznika-3920",
   },
+  {
+    title: "Спорная Долина: кому же достанутся квадратные метры известной певицы",
+    source: "Известия",
+    year: "2024",
+    url: "https://iz.ru/1758783/elena-balaian/spornaia-dolina-komu-zhe-dostanutsia-kvadratnye-metry-izvestnoi-pevitcy",
+  },
 ];
 
 
