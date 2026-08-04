@@ -217,30 +217,43 @@ export const faq = [
 
 export const publications = [
   {
-    title: "Как бизнесу защититься от массовых возвратов и претензий",
-    source: "Forbes",
-    year: "2025",
-    url: "https://www.forbes.ru/",
-  },
-  {
-    title: "Нарушение прав на бренд: что реально можно взыскать",
-    source: "RB.RU",
-    year: "2025",
-    url: "https://rb.ru/",
-  },
-  {
-    title: "Договор с клиентом: 7 пунктов, из-за которых проигрывают суд",
-    source: "vc.ru",
+    title: "Как расторгнуть договор купли-продажи квартиры: все нюансы",
+    source: "РБК",
     year: "2024",
-    url: "https://vc.ru/",
+    url: "https://realty.rbc.ru/news/6689a8c89a79475991dafbf2?from=copy",
   },
   {
-    title: "Раздел бизнеса при разводе: как не потерять компанию",
-    source: "Право.ru",
+    title: "Как досрочно поставить дом на капремонт: 10 шагов",
+    source: "РБК",
     year: "2024",
-    url: "https://pravo.ru/",
+    url: "https://realty.rbc.ru/news/66da0bba9a7947efd38be136?from=copy",
+  },
+  {
+    title: "Флиппинг и хоумстейджинг: эксперты раскрыли реальную выгоду этих явлений",
+    source: "РИА Новости",
+    year: "2024",
+    url: "https://realty.ria.ru/20240808/flipping-1964645479.html",
+  },
+  {
+    title: "Как игровые приложения разводят россиян на деньги и как распознать лохотрон. Главное",
+    source: "Секрет фирмы",
+    year: "2024",
+    url: "https://secretmag.ru/technologies/igrovye-prilozheniya-razvodyat.htm",
+  },
+  {
+    title: "Кому из россиян придётся сменить способ авторизации на сайтах. Объяснила юрист",
+    source: "Секрет фирмы",
+    year: "2023",
+    url: "https://secretmag.ru/news/komu-iz-rossiyan-pridyotsya-smenit-sposob-avtorizacii-na-saitakh-obyasnila-yurist.htm",
+  },
+  {
+    title: "ВС усомнился в беспристрастности и независимости АУ от первого заявителя и должника",
+    source: "PROбанкротство",
+    year: "2023",
+    url: "https://probankrotstvo.ru/news/vs-usomnilsia-v-bespristrastnosti-i-nezavisimosti-au-ot-pervogo-zaiavitelia-i-dolznika-3920",
   },
 ];
+
 
 export const diplomas = [
   {
