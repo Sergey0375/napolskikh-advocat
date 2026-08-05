@@ -199,18 +199,18 @@ function AboutPage() {
       )}
 
       <Section eyebrow="Медиа" title="Мои публикации" className="pt-0">
-        <ul className="mt-10 divide-y divide-border panel">
+        <ul className="mt-10 divide-y divide-border border-t border-border">
           {publications.map((p) => (
             <li key={p.title}>
               <a
                 href={p.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col gap-1 p-6 transition-colors hover:bg-accent/50 sm:flex-row sm:items-center sm:justify-between"
+                className="flex flex-col gap-1 py-5 transition-colors hover:text-neon sm:flex-row sm:items-center sm:justify-between"
               >
                 <span className="text-base">{p.title}</span>
-                <span className="flex shrink-0 items-center gap-2 text-sm text-neon">
-                  {p.source} · {p.year} <ExternalLink className="size-4" />
+                <span className="flex shrink-0 items-center gap-2 text-sm text-muted-foreground">
+                  {p.source} · {p.year} <ExternalLink className="size-4 text-neon" />
                 </span>
               </a>
             </li>
