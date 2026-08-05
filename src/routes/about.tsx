@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { X, ExternalLink } from "lucide-react";
+import { useEffect, useState } from "react";
+import { X, ExternalLink, Maximize2 } from "lucide-react";
 import photo from "@/assets/advokat.jpg.asset.json";
 import d1 from "@/assets/doc-1.jpg.asset.json";
 import d2 from "@/assets/doc-2.jpg.asset.json";
@@ -17,6 +17,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 
 const imageMap: Record<string, string> = {
@@ -83,6 +84,18 @@ export const Route = createFileRoute("/about")({
 
 function AboutPage() {
   const [full, setFull] = useState<number | null>(null);
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+    setCurrent(api.selectedScrollSnap());
+    const onSelect = () => setCurrent(api.selectedScrollSnap());
+    api.on("select", onSelect);
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
 
   return (
     <>
