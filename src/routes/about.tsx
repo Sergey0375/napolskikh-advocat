@@ -142,21 +142,21 @@ function AboutPage() {
                   type="button"
                   onClick={() => setFull(i)}
                   aria-label={`Открыть документ: ${d.title}`}
-                  className="panel group h-full w-full overflow-hidden p-3 text-left transition-all hover:-translate-y-1 hover:border-neon/50 hover:shadow-[0_18px_40px_-24px_var(--neon)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon/60"
+                  className="group h-full w-full overflow-hidden text-left transition-transform hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon/60"
                 >
-                  <div className="relative overflow-hidden rounded-md bg-white">
+                  <div className="relative overflow-hidden rounded-md border border-border/60 bg-white shadow-sm">
                     <img
                       src={imageMap[d.file]}
                       alt={`${d.title}, ${d.org}`}
                       loading="lazy"
-                      className="aspect-4/3 w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+                      className="aspect-4/3 w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
                     />
                     <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-background/85 px-3 py-1.5 text-center text-xs text-neon opacity-0 transition-opacity group-hover:opacity-100">
                       Открыть во весь экран
                     </span>
                   </div>
 
-                  <p className="mt-3 text-sm leading-snug">{d.title}</p>
+                  <p className="mt-3 text-sm leading-snug text-foreground">{d.title}</p>
                   <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
                     {d.org} · {d.year}
                   </p>
@@ -199,18 +199,18 @@ function AboutPage() {
       )}
 
       <Section eyebrow="Медиа" title="Мои публикации" className="pt-0">
-        <ul className="mt-10 divide-y divide-border panel">
+        <ul className="mt-10 divide-y divide-border border-t border-border">
           {publications.map((p) => (
             <li key={p.title}>
               <a
                 href={p.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col gap-1 p-6 transition-colors hover:bg-accent/50 sm:flex-row sm:items-center sm:justify-between"
+                className="flex flex-col gap-1 py-5 transition-colors hover:text-neon sm:flex-row sm:items-center sm:justify-between"
               >
                 <span className="text-base">{p.title}</span>
-                <span className="flex shrink-0 items-center gap-2 text-sm text-neon">
-                  {p.source} · {p.year} <ExternalLink className="size-4" />
+                <span className="flex shrink-0 items-center gap-2 text-sm text-muted-foreground">
+                  {p.source} · {p.year} <ExternalLink className="size-4 text-neon" />
                 </span>
               </a>
             </li>
