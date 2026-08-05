@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { X, ExternalLink } from "lucide-react";
+import { useEffect, useState } from "react";
+import { X, ExternalLink, Maximize2 } from "lucide-react";
 import photo from "@/assets/advokat.jpg.asset.json";
 import d1 from "@/assets/doc-1.jpg.asset.json";
 import d2 from "@/assets/doc-2.jpg.asset.json";
@@ -17,6 +17,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 
 const imageMap: Record<string, string> = {
@@ -83,6 +84,18 @@ export const Route = createFileRoute("/about")({
 
 function AboutPage() {
   const [full, setFull] = useState<number | null>(null);
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+    setCurrent(api.selectedScrollSnap());
+    const onSelect = () => setCurrent(api.selectedScrollSnap());
+    api.on("select", onSelect);
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
 
   return (
     <>
@@ -131,46 +144,84 @@ function AboutPage() {
       </Section>
 
       <Section eyebrow="Квалификация" title="Дипломы и удостоверения" className="pt-0">
-        <Carousel opts={{ align: "start", loop: true }} className="mt-10">
+        <p className="mt-4 max-w-2xl text-muted-foreground">
+          Подтверждённая квалификация: профильное образование, статус адвоката и регулярное
+          повышение квалификации. Нажмите на документ, чтобы рассмотреть его целиком.
+        </p>
+
+        <Carousel
+          opts={{ align: "start", loop: true }}
+          setApi={setApi}
+          className="mt-10"
+        >
           <CarouselContent className="-ml-4">
             {diplomas.map((d, i) => (
               <CarouselItem
                 key={d.title}
-                className="basis-[85%] pl-4 sm:basis-1/2 lg:basis-1/3"
+                className="basis-[82%] pl-4 sm:basis-1/2 lg:basis-1/3"
               >
                 <button
                   type="button"
                   onClick={() => setFull(i)}
                   aria-label={`Открыть документ: ${d.title}`}
-                  className="group flex h-full w-full flex-col text-left transition-transform hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon/60"
+                  className="group relative flex h-full w-full flex-col overflow-hidden rounded-xl border border-border/70 bg-surface/40 p-3 text-left transition-all duration-300 hover:-translate-y-1 hover:border-neon/45 hover:bg-surface/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon/60"
                 >
-                  <div className="relative flex-1 overflow-hidden rounded-md border border-border/60 bg-white shadow-sm">
-                    <img
-                      src={imageMap[d.file]}
-                      alt={`${d.title}, ${d.org}`}
-                      loading="lazy"
-                      className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
-                    />
-                    <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-background/85 px-3 py-1.5 text-center text-xs text-neon opacity-0 transition-opacity group-hover:opacity-100">
-                      Открыть во весь экран
+                  <div className="relative overflow-hidden rounded-lg bg-white">
+                    <div className="aspect-[3/4] w-full">
+                      <img
+                        src={imageMap[d.file]}
+                        alt={`${d.title}, ${d.org}`}
+                        loading="lazy"
+                        className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    </div>
+
+                    <span className="absolute left-2 top-2 rounded-md bg-background/85 px-2 py-0.5 font-display text-[11px] tracking-wide text-neon">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+
+                    <span className="pointer-events-none absolute inset-0 flex items-end justify-center bg-gradient-to-t from-background/85 via-background/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      <span className="mb-3 inline-flex items-center gap-1.5 rounded-md border border-neon/40 bg-background/80 px-3 py-1.5 text-xs text-neon">
+                        <Maximize2 className="size-3.5" />
+                        Открыть
+                      </span>
                     </span>
                   </div>
 
-                  <p className="mt-3 text-sm leading-snug text-foreground">{d.title}</p>
-                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                    {d.org} · {d.year}
-                  </p>
+                  <div className="mt-4 flex flex-1 flex-col">
+                    <p className="text-sm leading-snug text-foreground">{d.title}</p>
+                    <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{d.org}</p>
+                    <span className="mt-auto pt-3 text-[11px] uppercase tracking-[0.18em] text-neon/80">
+                      {d.year}
+                    </span>
+                  </div>
                 </button>
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="static mt-6 mr-2 inline-flex translate-y-0 sm:absolute sm:-left-5 sm:mt-0 sm:mr-0 sm:-translate-y-1/2" />
-          <CarouselNext className="static mt-6 inline-flex translate-y-0 sm:absolute sm:-right-5 sm:mt-0 sm:-translate-y-1/2" />
+
+          <div className="mt-7 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              {diplomas.map((d, i) => (
+                <button
+                  key={d.title}
+                  type="button"
+                  aria-label={`Перейти к документу ${i + 1}`}
+                  onClick={() => api?.scrollTo(i)}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    i === current ? "w-7 bg-neon" : "w-1.5 bg-border hover:bg-neon/50"
+                  }`}
+                />
+              ))}
+            </div>
+            <div className="flex items-center gap-2">
+              <CarouselPrevious className="static translate-y-0" />
+              <CarouselNext className="static translate-y-0" />
+            </div>
+          </div>
         </Carousel>
-        <p className="mt-4 text-xs text-muted-foreground sm:hidden">
-          Листайте карточки свайпом или стрелками — нажмите, чтобы открыть документ целиком.
-        </p>
       </Section>
+
 
 
       {full !== null && (
