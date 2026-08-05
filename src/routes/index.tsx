@@ -48,14 +48,14 @@ function Home() {
   return (
     <>
       <section className="relative overflow-hidden border-b border-border">
-        <div className="pointer-events-none absolute -top-40 right-0 size-[560px] rounded-full bg-neon/15 blur-[150px]" />
-        <div className="pointer-events-none absolute -bottom-52 -left-24 size-[520px] rounded-full bg-primary/15 blur-[150px]" />
+        <div className="pointer-events-none absolute -top-40 right-0 size-[560px] rounded-full bg-neon/8 blur-[170px]" />
+        <div className="pointer-events-none absolute -bottom-52 -left-24 size-[520px] rounded-full bg-primary/6 blur-[170px]" />
         <div className="relative mx-auto grid max-w-6xl gap-12 px-5 py-16 md:py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
             <p className="text-[11px] uppercase tracking-[0.22em] text-neon">{site.role}</p>
-            <h1 className="mt-5 text-4xl leading-[1.05] md:text-6xl">
+            <h1 className="mt-6 text-[2.15rem] leading-[1.08] tracking-[-0.02em] md:text-[3.4rem]">
               {site.name.replace("Адвокат ", "")}
-              <span className="mt-3 block neon-text">{site.tagline}</span>
+              <span className="mt-4 block text-[0.62em] font-normal leading-snug tracking-normal neon-text">{site.tagline}</span>
             </h1>
 
             <div className="mt-5 flex flex-wrap items-center gap-2">
@@ -130,9 +130,9 @@ function Home() {
                 key={s.slug}
                 to="/services"
                 hash={s.slug}
-                className="panel group relative flex flex-col overflow-hidden p-6 transition-all duration-300 hover:-translate-y-1 hover:border-neon/60 hover:shadow-[0_24px_60px_-28px_var(--neon)]"
+                className="panel group relative flex flex-col overflow-hidden p-6 transition-all duration-300 hover:-translate-y-1 hover:border-neon/60 hover:shadow-[0_18px_44px_-30px_var(--neon)]"
               >
-                <span className="pointer-events-none absolute -right-16 -top-16 size-40 rounded-full bg-neon/10 opacity-0 blur-3xl transition-opacity duration-300 group-hover:opacity-100" />
+                <span className="pointer-events-none absolute -right-16 -top-16 size-40 rounded-full bg-neon/8 opacity-0 blur-3xl transition-opacity duration-300 group-hover:opacity-100" />
                 <span className="relative inline-flex size-11 items-center justify-center rounded-lg border border-neon/25 bg-neon/10 text-neon transition-colors duration-300 group-hover:bg-neon group-hover:text-neon-foreground">
                   <Icon className="size-5" />
                 </span>
