@@ -48,23 +48,25 @@ function Home() {
       {/* 01 — Hero */}
       <section className="pb-16 pt-14 md:pb-24 md:pt-20">
         <Container>
-          <div className="grid items-center gap-12 lg:grid-cols-[58fr_42fr] lg:gap-16">
-            <div>
+          <div className="grid items-stretch gap-12 lg:grid-cols-[58fr_42fr] lg:gap-16">
+            <div className="flex flex-col">
               <h1 className="text-balance">
                 Адвокат по бизнесу, недвижимости и частным активам
               </h1>
-              <p className="mt-6 max-w-[600px] font-display text-[1.25rem] leading-snug text-foreground md:text-[1.45rem]">
+              <p className="mt-6 max-w-[600px] text-body-lg text-foreground">
                 Помогаю предпринимателям и частным клиентам защищать бизнес, недвижимость и
                 имущество в сложных переговорах, конфликтах и судебных спорах.
               </p>
-              <p className="mt-5 max-w-[600px] text-[15px] leading-relaxed text-muted-foreground">
+              <p className="mt-4 max-w-[600px] text-body text-muted-foreground">
                 Сначала оцениваю риски и экономический результат. Затем предлагаю юридическую
                 стратегию.
               </p>
 
-              <div className="mt-8 max-w-[600px] space-y-1 border-l-2 border-neon/40 pl-5 text-[15px]">
-                <p className="font-medium text-foreground">Напольских Татьяна Сергеевна</p>
-                <p className="text-muted-foreground">
+              <div className="mt-8 max-w-[600px] space-y-1 border-l-2 border-neon/40 pl-5">
+                <p className="text-body font-medium text-foreground">
+                  Напольских Татьяна Сергеевна
+                </p>
+                <p className="text-body-sm text-muted-foreground">
                   Адвокат · Член Московской коллегии адвокатов · Реестровый номер{" "}
                   {site.registryNumber}
                 </p>
@@ -85,7 +87,7 @@ function Home() {
                 width={659}
                 height={878}
                 fetchPriority="high"
-                className="w-full rounded-2xl border border-border/70 object-cover"
+                className="h-full max-h-[620px] w-full rounded-2xl border border-border/70 object-cover object-top"
               />
             </div>
           </div>
@@ -95,15 +97,19 @@ function Home() {
       {/* 02 — Trust bar */}
       <section className="border-y border-border/60 bg-surface/30 py-10">
         <Container>
-          <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            <TrustStat label="Практика" value={`с ${site.experienceSince} года`} />
-            <TrustStat label="Статус" value={`Адвокат с ${site.advocateSince} года`} />
+          <dl className="grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+            <TrustStat label="Практика" value={`с ${site.experienceSince} года`} note="в юриспруденции" />
+            <TrustStat
+              label="Статус"
+              value={`Адвокат с ${site.advocateSince} года`}
+              note="Московская коллегия адвокатов"
+            />
             <TrustStat
               label="Дела"
               value={site.completedProjects}
-              note="завершённых юридических проектов и дел"
+              note="завершённых проектов и дел"
             />
-            <TrustStat label="География" value="Москва · работа по всей России" />
+            <TrustStat label="География" value="Москва" note="работа по всей России" />
           </dl>
         </Container>
       </section>
