@@ -1,18 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import photo from "@/assets/advokat.jpg.asset.json";
-import portrait from "@/assets/tatiana-portrait.png.asset.json";
-import { site, services, stages, cases, faq, publications, SITE_URL } from "@/data/site";
+import { site, services, stages, SITE_URL } from "@/data/site";
 import {
   Section,
   Container,
-  SectionHeader,
   TelegramButton,
   CTASection,
   buttonStyles,
 } from "@/components/site/Section";
-import { PracticeCard, CaseCard, TrustStat } from "@/components/site/cards";
-import { FaqList } from "@/components/site/FaqList";
+import { PracticeCard, TrustStat } from "@/components/site/cards";
 
 export const Route = createFileRoute("/")({
   head: () => ({
