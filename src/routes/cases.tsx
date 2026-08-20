@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { cases, site, SITE_URL } from "@/data/site";
-import { Section, CtaBand } from "@/components/site/Section";
+import { Section, CTASection } from "@/components/site/Section";
+import { CaseCard } from "@/components/site/cards";
+
 
 export const Route = createFileRoute("/cases")({
   head: () => ({
