@@ -32,7 +32,7 @@ export function SectionHeader({
         <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-neon">{eyebrow}</p>
       )}
       {title && <Tag className="text-balance">{title}</Tag>}
-      {lead && <p className="mt-5 max-w-[680px] text-muted-foreground">{lead}</p>}
+      {lead && <p className="mt-5 max-w-[660px] text-body-lg text-muted-foreground">{lead}</p>}
     </header>
   );
 }

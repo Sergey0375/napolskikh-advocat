@@ -45,8 +45,8 @@ export function PracticeCard({
         {String(index + 1).padStart(2, "0")}
       </span>
       <h3 className="mt-6 text-balance">{service.title}</h3>
-      <p className="mt-4 text-body text-muted-foreground">{service.short}</p>
-      <span className="mt-8 inline-flex items-center gap-2 text-[15px] text-neon">
+      <p className="mt-4 text-body-sm text-muted-foreground">{service.short}</p>
+      <span className="mt-8 inline-flex items-center gap-2 text-body-sm font-medium text-neon">
         Подробнее
         <ArrowRight
           className="size-4 transition-transform duration-200 group-hover:translate-x-1"
@@ -69,18 +69,22 @@ export function CaseCard({
       <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
         {item.tag}
       </span>
-      <Tag className="mt-4 text-balance">{item.title}</Tag>
-      <p className="mt-4 text-body text-muted-foreground">{item.text}</p>
-      <dl className="mt-auto grid grid-cols-[1fr_auto] items-end gap-4 border-t border-border/60 pt-6 text-sm">
+      <Tag className="mt-4 text-balance text-[1.125rem] leading-snug md:text-[1.3125rem]">
+        {item.title}
+      </Tag>
+      <p className="mt-4 text-body-sm text-muted-foreground">{item.text}</p>
+      <dl className="mt-auto grid grid-cols-[1fr_auto] items-end gap-5 border-t border-border/60 pt-6">
         <div className="min-w-0">
           <dt className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
             Результат
           </dt>
-          <dd className="mt-1.5 text-neon">{item.result}</dd>
+          <dd className="mt-2 font-display text-lg leading-snug text-neon md:text-xl">
+            {item.result}
+          </dd>
         </div>
         <div className="text-right">
           <dt className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Срок</dt>
-          <dd className="mt-1.5">{item.term}</dd>
+          <dd className="mt-2 text-body-sm text-foreground">{item.term}</dd>
         </div>
       </dl>
     </article>

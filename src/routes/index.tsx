@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import photo from "@/assets/advokat.jpg.asset.json";
+import portrait from "@/assets/tatiana-portrait.png.asset.json";
 import { site, services, stages, cases, faq, publications, SITE_URL } from "@/data/site";
 import {
   Section,
@@ -160,7 +161,7 @@ function Home() {
           {stages.map((s) => (
             <li key={s.n} className="border-t border-border/60 pt-5">
               <span className="font-display text-sm text-neon">{s.n}</span>
-              <h4 className="mt-3 text-body-lg">{s.title}</h4>
+              <h4 className="mt-3">{s.title}</h4>
               <p className="mt-2 text-body-sm text-muted-foreground">{s.text}</p>
             </li>
           ))}
@@ -201,19 +202,14 @@ function Home() {
             </Link>
           </div>
 
-          <dl className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border/60 bg-border/60 sm:grid-cols-2">
-            {[
-              { t: "Опыт", d: "Судебный отдел Росимущества, юридические фирмы, частная практика" },
-              { t: "Специализация", d: "Бизнес, недвижимость, семейные и частные активы" },
-              { t: "Формат", d: "Веду дело лично, без передачи помощникам" },
-              { t: "Публичность", d: "Комментарии для РБК, РИА, «Известий» и отраслевых медиа" },
-            ].map((f) => (
-              <div key={f.t} className="bg-background/60 p-6 md:p-7">
-                <dt className="text-[11px] uppercase tracking-[0.2em] text-neon">{f.t}</dt>
-                <dd className="mt-3 text-body-sm text-muted-foreground">{f.d}</dd>
-              </div>
-            ))}
-          </dl>
+          <img
+            src={portrait.url}
+            alt={`${site.name} — адвокат, портрет`}
+            width={623}
+            height={831}
+            loading="lazy"
+            className="h-full max-h-[560px] w-full rounded-2xl border border-border/60 object-cover object-top"
+          />
         </div>
       </Section>
 
@@ -223,7 +219,7 @@ function Home() {
         title="Комментирую право для деловых изданий"
         lead="Публикации и экспертные комментарии в федеральных и отраслевых медиа."
       >
-        <p className="mt-10 flex flex-wrap gap-x-8 gap-y-3 font-display text-lg text-muted-foreground">
+        <p className="mt-10 flex flex-wrap gap-x-8 gap-y-3 font-display text-base text-muted-foreground md:text-lg">
           {mediaSources.map((s) => (
             <span key={s}>{s}</span>
           ))}
@@ -237,7 +233,7 @@ function Home() {
                 rel="noopener noreferrer"
                 className="flex flex-col gap-1 py-5 transition-colors duration-200 hover:text-neon sm:flex-row sm:items-center sm:justify-between sm:gap-6"
               >
-                <span className="min-w-0 text-body-lg">{p.title}</span>
+                <span className="min-w-0 text-body">{p.title}</span>
                 <span className="flex shrink-0 items-center gap-2 text-sm text-muted-foreground">
                   {p.source} · {p.year}
                   <ExternalLink className="size-4" strokeWidth={1.6} />
