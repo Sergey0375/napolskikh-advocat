@@ -131,7 +131,9 @@ function AboutPage() {
 
           <div className="max-w-[680px] space-y-5 text-muted-foreground">
             <p>
-              {site.role}. {site.reg}. В юриспруденции с 2019 года, статус адвоката — с 2024-го.
+              Член Московской коллегии адвокатов. {site.reg}. В юриспруденции с{" "}
+              {site.experienceSince} года, статус адвоката — с {site.advocateSince}-го.
+
             </p>
             <p>
               Начинала работу в судебном отделе Росимущества, затем работала в юридических фирмах,
