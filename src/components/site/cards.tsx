@@ -13,10 +13,12 @@ export function TrustStat({
   note?: string | undefined;
 }) {
   return (
-    <div className="py-1">
-      <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">{label}</p>
-      <p className="mt-2 font-display text-lg text-foreground md:text-xl">{value}</p>
-      {note && <p className="mt-1 text-sm text-muted-foreground">{note}</p>}
+    <div className="flex min-h-[112px] flex-col">
+      <dt className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">{label}</dt>
+      <dd className="mt-3 font-display text-xl leading-tight text-foreground md:text-[1.5rem]">
+        {value}
+      </dd>
+      {note && <dd className="mt-2 text-body-sm text-muted-foreground">{note}</dd>}
     </div>
   );
 }
