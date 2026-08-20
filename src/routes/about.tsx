@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { X, ExternalLink, Maximize2 } from "lucide-react";
+import { X, ExternalLink } from "lucide-react";
 import photo from "@/assets/advokat.jpg.asset.json";
 import d1 from "@/assets/doc-1.jpg.asset.json";
 import d2 from "@/assets/doc-2.jpg.asset.json";
@@ -10,7 +10,8 @@ import d6 from "@/assets/doc-6.jpg.asset.json";
 import d7 from "@/assets/doc-7.jpg.asset.json";
 import d8 from "@/assets/doc-8.jpg.asset.json";
 import { site, diplomas, publications, SITE_URL } from "@/data/site";
-import { Section, CtaBand } from "@/components/site/Section";
+import { Section, CTASection } from "@/components/site/Section";
+
 import {
   Carousel,
   CarouselContent,
