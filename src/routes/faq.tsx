@@ -47,18 +47,12 @@ function FaqPage() {
         title="Вопросы, которые задают чаще всего"
         lead="Если ответа на ваш вопрос здесь нет — напишите в Telegram, отвечу лично."
       >
-        <Accordion type="single" collapsible className="mt-10 panel px-6 md:px-8">
-          {faq.map((f, i) => (
-            <AccordionItem key={f.q} value={`q${i}`} className="border-border">
-              <AccordionTrigger className="text-left text-base hover:no-underline">
-                {f.q}
-              </AccordionTrigger>
-              <AccordionContent className="text-sm text-muted-foreground">{f.a}</AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        <div className="mt-12 max-w-[860px]">
+          <FaqList items={faq} />
+        </div>
       </Section>
-      <CtaBand />
+      <CTASection />
     </>
   );
 }
+
