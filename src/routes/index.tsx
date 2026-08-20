@@ -58,7 +58,10 @@ function Home() {
 
               <p className="mt-8 max-w-[560px] text-body-sm text-muted-foreground/75">
                 <span className="text-foreground">Напольских Татьяна Сергеевна</span> · адвокат ·
-                Московская коллегия адвокатов · рег. № {site.registryNumber}
+                Московская коллегия адвокатов
+              </p>
+              <p className="mt-1 max-w-[560px] text-body-sm text-muted-foreground/75">
+                рег. № {site.registryNumber}
               </p>
 
               <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
