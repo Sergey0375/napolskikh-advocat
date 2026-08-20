@@ -220,6 +220,6 @@
 }
 
 @utility text-body-lg {
-  font-size: 1.125rem;
-  line-height: 1.6;
+  font-size: clamp(1.0625rem, 1.02rem + 0.2vw, 1.1875rem);
+  line-height: 1.62;
 }
