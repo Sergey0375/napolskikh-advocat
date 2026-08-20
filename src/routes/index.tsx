@@ -211,8 +211,6 @@ function Home() {
           />
         </div>
       </Section>
-        </div>
-      </Section>
 
       {/* 07 — СМИ */}
       <Section
