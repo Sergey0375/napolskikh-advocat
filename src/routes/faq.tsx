@@ -1,12 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { faq, site, SITE_URL } from "@/data/site";
-import { Section, CtaBand } from "@/components/site/Section";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Section, CTASection } from "@/components/site/Section";
+import { FaqList } from "@/components/site/FaqList";
+
 
 export const Route = createFileRoute("/faq")({
   head: () => ({
