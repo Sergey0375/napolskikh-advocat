@@ -50,24 +50,16 @@ function Home() {
               <h1 className="text-balance">
                 Адвокат по бизнесу, недвижимости и частным активам
               </h1>
-              <p className="mt-6 max-w-[600px] text-body-lg text-foreground">
+              <p className="mt-6 max-w-[560px] text-body-lg text-muted-foreground">
                 Помогаю предпринимателям и частным клиентам защищать бизнес, недвижимость и
-                имущество в сложных переговорах, конфликтах и судебных спорах.
-              </p>
-              <p className="mt-4 max-w-[600px] text-body text-muted-foreground">
-                Сначала оцениваю риски и экономический результат. Затем предлагаю юридическую
-                стратегию.
+                имущество в переговорах, конфликтах и судебных спорах. Сначала оцениваю риски и
+                экономический результат — затем предлагаю стратегию.
               </p>
 
-              <div className="mt-8 max-w-[600px] space-y-1 border-l-2 border-neon/40 pl-5">
-                <p className="text-body font-medium text-foreground">
-                  Напольских Татьяна Сергеевна
-                </p>
-                <p className="text-body-sm text-muted-foreground">
-                  Адвокат · Член Московской коллегии адвокатов · Реестровый номер{" "}
-                  {site.registryNumber}
-                </p>
-              </div>
+              <p className="mt-8 max-w-[560px] text-body-sm text-muted-foreground/75">
+                <span className="text-foreground">Напольских Татьяна Сергеевна</span> · адвокат ·
+                Московская коллегия адвокатов · рег. № {site.registryNumber}
+              </p>
 
               <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <TelegramButton className="w-full sm:w-auto" label="Обсудить ситуацию" />
@@ -75,6 +67,7 @@ function Home() {
                   Посмотреть кейсы <ArrowRight className="size-4" strokeWidth={1.6} />
                 </Link>
               </div>
+
             </div>
 
             <div className="lg:pl-4">
