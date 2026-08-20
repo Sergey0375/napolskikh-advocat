@@ -69,7 +69,9 @@ export function CaseCard({
       <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
         {item.tag}
       </span>
-      <Tag className="mt-4 text-balance">{item.title}</Tag>
+      <Tag className="mt-4 text-balance text-[1.125rem] leading-snug md:text-[1.3125rem]">
+        {item.title}
+      </Tag>
       <p className="mt-4 text-body-sm text-muted-foreground">{item.text}</p>
       <dl className="mt-auto grid grid-cols-[1fr_auto] items-end gap-5 border-t border-border/60 pt-6">
         <div className="min-w-0">
