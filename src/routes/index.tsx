@@ -201,19 +201,16 @@ function Home() {
             </Link>
           </div>
 
-          <dl className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border/60 bg-border/60 sm:grid-cols-2">
-            {[
-              { t: "Опыт", d: "Судебный отдел Росимущества, юридические фирмы, частная практика" },
-              { t: "Специализация", d: "Бизнес, недвижимость, семейные и частные активы" },
-              { t: "Формат", d: "Веду дело лично, без передачи помощникам" },
-              { t: "Публичность", d: "Комментарии для РБК, РИА, «Известий» и отраслевых медиа" },
-            ].map((f) => (
-              <div key={f.t} className="bg-background/60 p-6 md:p-7">
-                <dt className="text-[11px] uppercase tracking-[0.2em] text-neon">{f.t}</dt>
-                <dd className="mt-3 text-body-sm text-muted-foreground">{f.d}</dd>
-              </div>
-            ))}
-          </dl>
+          <img
+            src={portrait.url}
+            alt={`${site.name} — адвокат, портрет`}
+            width={623}
+            height={831}
+            loading="lazy"
+            className="h-full max-h-[560px] w-full rounded-2xl border border-border/60 object-cover object-top"
+          />
+        </div>
+      </Section>
         </div>
       </Section>
 
