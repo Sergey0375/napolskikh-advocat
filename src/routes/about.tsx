@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { X, ExternalLink } from "lucide-react";
-import photo from "@/assets/advokat.jpg.asset.json";
 import portrait from "@/assets/tatiana-portrait.png.asset.json";
 import d1 from "@/assets/doc-1.jpg.asset.json";
 import d2 from "@/assets/doc-2.jpg.asset.json";
@@ -143,15 +142,7 @@ function AboutPage() {
             </ul>
           </div>
 
-          <div className="flex flex-col gap-5 lg:sticky lg:top-28">
-            <img
-              src={photo.url}
-              alt={`${site.name}, портрет`}
-              loading="lazy"
-              width={659}
-              height={878}
-              className="w-full rounded-2xl border border-border/70 object-cover object-top"
-            />
+          <div className="lg:sticky lg:top-28">
             <img
               src={portrait.url}
               alt={`${site.name} — адвокат`}

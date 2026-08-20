@@ -113,16 +113,20 @@ export function CTASection() {
     <section className="border-y border-border/60 bg-surface/40 py-16 md:py-24">
       <Container>
         <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
-          <div className="max-w-[680px]">
+          <div className="max-w-[720px]">
             <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-neon">Консультация</p>
-            <h2>Разберём вашу ситуацию за 30 минут</h2>
-            <p className="mt-5 text-muted-foreground">
-              Первичный разбор бесплатный. Отвечу честно о перспективах, сроках и стоимости — даже
-              если дело окажется не в моей специализации.
+            <h2>Обсудим вашу ситуацию</h2>
+            <p className="mt-5 text-body-lg text-muted-foreground">
+              За 30 минут определим ключевые юридические риски, возможные варианты действий и
+              целесообразность дальнейшей работы.
+            </p>
+            <p className="mt-4 max-w-[640px] text-body-sm text-muted-foreground/80">
+              Если вопрос находится за пределами моей специализации, скажу об этом прямо и при
+              возможности порекомендую профильного коллегу.
             </p>
           </div>
           <div className="flex flex-col items-start gap-4 lg:items-end">
-            <TelegramButton className="w-full sm:w-auto" />
+            <TelegramButton className="w-full sm:w-auto" label="Написать в Telegram" />
             <a href={site.phoneHref} className={buttonStyles.link}>
               {site.phone}
               <ArrowUpRight className="size-4" strokeWidth={1.6} />
