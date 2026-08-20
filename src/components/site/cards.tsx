@@ -45,7 +45,7 @@ export function PracticeCard({
         {String(index + 1).padStart(2, "0")}
       </span>
       <h3 className="mt-6 text-balance">{service.title}</h3>
-      <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">{service.short}</p>
+      <p className="mt-4 text-body text-muted-foreground">{service.short}</p>
       <span className="mt-8 inline-flex items-center gap-2 text-[15px] text-neon">
         Подробнее
         <ArrowRight
@@ -70,7 +70,7 @@ export function CaseCard({
         {item.tag}
       </span>
       <Tag className="mt-4 text-balance">{item.title}</Tag>
-      <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">{item.text}</p>
+      <p className="mt-4 text-body text-muted-foreground">{item.text}</p>
       <dl className="mt-auto grid grid-cols-[1fr_auto] items-end gap-4 border-t border-border/60 pt-6 text-sm">
         <div className="min-w-0">
           <dt className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">

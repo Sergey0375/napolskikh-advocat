@@ -151,7 +151,7 @@ function Home() {
           ].map((i) => (
             <div key={i.t} className="border-t border-border/60 pt-6">
               <h3>{i.t}</h3>
-              <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">{i.d}</p>
+              <p className="mt-3 text-body text-muted-foreground">{i.d}</p>
             </div>
           ))}
         </div>
@@ -160,8 +160,8 @@ function Home() {
           {stages.map((s) => (
             <li key={s.n} className="border-t border-border/60 pt-5">
               <span className="font-display text-sm text-neon">{s.n}</span>
-              <h4 className="mt-3 text-[17px]">{s.title}</h4>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
+              <h4 className="mt-3 text-body-lg">{s.title}</h4>
+              <p className="mt-2 text-body-sm text-muted-foreground">{s.text}</p>
             </li>
           ))}
         </ol>
@@ -238,7 +238,7 @@ function Home() {
                 rel="noopener noreferrer"
                 className="flex flex-col gap-1 py-5 transition-colors duration-200 hover:text-neon sm:flex-row sm:items-center sm:justify-between sm:gap-6"
               >
-                <span className="min-w-0 text-[17px]">{p.title}</span>
+                <span className="min-w-0 text-body-lg">{p.title}</span>
                 <span className="flex shrink-0 items-center gap-2 text-sm text-muted-foreground">
                   {p.source} · {p.year}
                   <ExternalLink className="size-4" strokeWidth={1.6} />
