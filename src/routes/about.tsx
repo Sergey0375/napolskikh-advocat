@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { X, ExternalLink } from "lucide-react";
 import photo from "@/assets/advokat.jpg.asset.json";
+import portrait from "@/assets/tatiana-portrait.png.asset.json";
 import d1 from "@/assets/doc-1.jpg.asset.json";
 import d2 from "@/assets/doc-2.jpg.asset.json";
 import d3 from "@/assets/doc-3.jpg.asset.json";
@@ -101,34 +102,7 @@ function AboutPage() {
   return (
     <>
       <Section eyebrow="Об адвокате" title={site.name.replace("Адвокат ", "")}>
-        <div className="mt-14 grid gap-12 lg:grid-cols-[42fr_58fr] lg:gap-16">
-          <div>
-            <img
-              src={photo.url}
-              alt={`${site.name}, портрет`}
-              loading="lazy"
-              width={659}
-              height={878}
-              className="w-full rounded-2xl border border-border/70 object-cover"
-            />
-            <dl className="mt-8 border-t border-border/60">
-              {[
-                { k: "Статус", v: `Адвокат, реестр Москвы № ${site.registryNumber}` },
-                { k: "В юриспруденции", v: `с ${site.experienceSince} года` },
-                { k: "Статус адвоката", v: `с ${site.advocateSince} года` },
-                { k: "Формат работы", v: "Очно и онлайн, вся Россия" },
-              ].map((f) => (
-                <div
-                  key={f.k}
-                  className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 border-b border-border/60 py-3.5 text-sm"
-                >
-                  <dt className="text-muted-foreground">{f.k}</dt>
-                  <dd className="text-right">{f.v}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-
+        <div className="mt-14 grid items-start gap-12 lg:grid-cols-[58fr_42fr] lg:gap-16">
           <div className="max-w-[680px] space-y-5 text-muted-foreground">
             <p>
               Начинала работу в судебном отделе Росимущества, затем работала в юридических фирмах,
@@ -167,6 +141,25 @@ function AboutPage() {
                 </p>
               </li>
             </ul>
+          </div>
+
+          <div className="flex flex-col gap-5 lg:sticky lg:top-28">
+            <img
+              src={photo.url}
+              alt={`${site.name}, портрет`}
+              loading="lazy"
+              width={659}
+              height={878}
+              className="w-full rounded-2xl border border-border/70 object-cover object-top"
+            />
+            <img
+              src={portrait.url}
+              alt={`${site.name} — адвокат`}
+              loading="lazy"
+              width={623}
+              height={831}
+              className="w-full rounded-2xl border border-border/60 object-cover object-top"
+            />
           </div>
         </div>
       </Section>

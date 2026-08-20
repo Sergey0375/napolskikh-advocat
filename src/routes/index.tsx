@@ -1,18 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import photo from "@/assets/advokat.jpg.asset.json";
-import portrait from "@/assets/tatiana-portrait.png.asset.json";
-import { site, services, stages, cases, faq, publications, SITE_URL } from "@/data/site";
+import { site, services, stages, SITE_URL } from "@/data/site";
 import {
   Section,
   Container,
-  SectionHeader,
   TelegramButton,
   CTASection,
   buttonStyles,
 } from "@/components/site/Section";
-import { PracticeCard, CaseCard, TrustStat } from "@/components/site/cards";
-import { FaqList } from "@/components/site/FaqList";
+import { PracticeCard, TrustStat } from "@/components/site/cards";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -42,7 +39,6 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const mediaSources = Array.from(new Set(publications.map((p) => p.source)));
 
   return (
     <>
@@ -168,96 +164,7 @@ function Home() {
         </ol>
       </Section>
 
-      {/* 05 — Кейсы */}
-      <Section
-        eyebrow="Кейсы"
-        title="Избранные дела"
-        lead="Детали изменены и обезличены в силу адвокатской тайны — суммы и результаты реальные."
-      >
-        <div className="mt-14 grid gap-5 md:grid-cols-2">
-          {cases.slice(0, 4).map((c) => (
-            <CaseCard key={c.title} item={c} />
-          ))}
-        </div>
-        <Link to="/cases" className={`${buttonStyles.link} mt-10`}>
-          Все кейсы <ArrowRight className="size-4" strokeWidth={1.6} />
-        </Link>
-      </Section>
-
-      {/* 06 — Об адвокате */}
-      <Section tone="subtle">
-        <div className="grid gap-12 lg:grid-cols-[52fr_48fr] lg:gap-16">
-          <div>
-            <SectionHeader eyebrow="Об адвокате" title="Личная практика, а не конвейер" />
-            <p className="mt-6 max-w-[680px] text-body text-muted-foreground">
-              Начинала работу в судебном отделе Росимущества, затем — в юридических фирмах, сегодня
-              веду частную практику. Реестровый номер {site.registryNumber}.
-            </p>
-            <p className="mt-4 max-w-[680px] text-body text-muted-foreground">
-              Принцип простой: сначала считаем, что выгоднее — переговоры или суд, и только потом
-              выбираем инструменты. Я не берусь за дело, если не вижу для вас реального результата.
-            </p>
-            <Link to="/about" className={`${buttonStyles.link} mt-8`}>
-              Подробнее об адвокате <ArrowRight className="size-4" strokeWidth={1.6} />
-            </Link>
-          </div>
-
-          <img
-            src={portrait.url}
-            alt={`${site.name} — адвокат, портрет`}
-            width={623}
-            height={831}
-            loading="lazy"
-            className="h-full max-h-[560px] w-full rounded-2xl border border-border/60 object-cover object-top"
-          />
-        </div>
-      </Section>
-
-      {/* 07 — СМИ */}
-      <Section
-        eyebrow="Медиа"
-        title="Комментирую право для деловых изданий"
-        lead="Публикации и экспертные комментарии в федеральных и отраслевых медиа."
-      >
-        <p className="mt-10 flex flex-wrap gap-x-8 gap-y-3 font-display text-base text-muted-foreground md:text-lg">
-          {mediaSources.map((s) => (
-            <span key={s}>{s}</span>
-          ))}
-        </p>
-        <ul className="mt-10 border-t border-border/60">
-          {publications.slice(0, 4).map((p) => (
-            <li key={p.title} className="border-b border-border/60">
-              <a
-                href={p.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col gap-1 py-5 transition-colors duration-200 hover:text-neon sm:flex-row sm:items-center sm:justify-between sm:gap-6"
-              >
-                <span className="min-w-0 text-body">{p.title}</span>
-                <span className="flex shrink-0 items-center gap-2 text-sm text-muted-foreground">
-                  {p.source} · {p.year}
-                  <ExternalLink className="size-4" strokeWidth={1.6} />
-                </span>
-              </a>
-            </li>
-          ))}
-        </ul>
-        <Link to="/about" hash="publications" className={`${buttonStyles.link} mt-10`}>
-          Все публикации <ArrowRight className="size-4" strokeWidth={1.6} />
-        </Link>
-      </Section>
-
-      {/* 08 — FAQ */}
-      <Section eyebrow="Вопросы" title="Коротко о главном" tone="subtle">
-        <div className="mt-12 max-w-[860px]">
-          <FaqList items={faq.slice(0, 6)} />
-        </div>
-        <Link to="/faq" className={`${buttonStyles.link} mt-10`}>
-          Все вопросы <ArrowRight className="size-4" strokeWidth={1.6} />
-        </Link>
-      </Section>
-
-      {/* 09 — Final CTA */}
+      {/* 05 — Final CTA */}
       <CTASection />
     </>
   );
