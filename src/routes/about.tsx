@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { X, ExternalLink } from "lucide-react";
 import photo from "@/assets/advokat.jpg.asset.json";
+import portrait from "@/assets/tatiana-portrait.png.asset.json";
 import d1 from "@/assets/doc-1.jpg.asset.json";
 import d2 from "@/assets/doc-2.jpg.asset.json";
 import d3 from "@/assets/doc-3.jpg.asset.json";
