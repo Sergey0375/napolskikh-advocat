@@ -39,7 +39,6 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const mediaSources = Array.from(new Set(publications.map((p) => p.source)));
 
   return (
     <>
