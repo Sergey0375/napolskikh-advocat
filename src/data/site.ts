@@ -8,6 +8,7 @@ export const site = {
   registryNumber: "77/17444",
   experienceSince: 2019,
   advocateSince: 2024,
+  completedProjects: "180+",
   tagline: "Защита бизнеса, собственности и семьи",
   telegram: "https://t.me/Tatiana_Napolskikh",
   telegramLabel: "@Tatiana_Napolskikh",

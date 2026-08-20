@@ -41,17 +41,6 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const currentYear = new Date().getFullYear();
-  const yearsInLaw = currentYear - site.experienceSince;
-
-  const pluralize = (n: number, one: string, few: string, many: string) => {
-    const mod10 = n % 10;
-    const mod100 = n % 100;
-    if (mod10 === 1 && mod100 !== 11) return `${n} ${one}`;
-    if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return `${n} ${few}`;
-    return `${n} ${many}`;
-  };
-
   const mediaSources = Array.from(new Set(publications.map((p) => p.source)));
 
   return (
@@ -61,24 +50,30 @@ function Home() {
         <Container>
           <div className="grid items-center gap-12 lg:grid-cols-[58fr_42fr] lg:gap-16">
             <div>
-              <p className="text-[11px] uppercase tracking-[0.24em] text-neon">{site.role}</p>
-              <h1 className="mt-6 text-balance">
-                {site.name.replace("Адвокат ", "")}
+              <h1 className="text-balance">
+                Адвокат по бизнесу, недвижимости и частным активам
               </h1>
-              <p className="mt-6 max-w-[560px] font-display text-[1.35rem] leading-snug text-neon md:text-[1.6rem]">
-                {site.tagline}
+              <p className="mt-6 max-w-[600px] font-display text-[1.25rem] leading-snug text-foreground md:text-[1.45rem]">
+                Помогаю предпринимателям и частным клиентам защищать бизнес, недвижимость и
+                имущество в сложных переговорах, конфликтах и судебных спорах.
+              </p>
+              <p className="mt-5 max-w-[600px] text-[15px] leading-relaxed text-muted-foreground">
+                Сначала оцениваю риски и экономический результат. Затем предлагаю юридическую
+                стратегию.
               </p>
 
-              <p className="mt-6 max-w-[560px] text-muted-foreground">
-                Веду дела предпринимателей и компаний, а также частные семейные и имущественные
-                споры. Работаю по всей России: документы, переговоры и большая часть заседаний —
-                дистанционно.
-              </p>
+              <div className="mt-8 max-w-[600px] space-y-1 border-l-2 border-neon/40 pl-5 text-[15px]">
+                <p className="font-medium text-foreground">Напольских Татьяна Сергеевна</p>
+                <p className="text-muted-foreground">
+                  Адвокат · Член Московской коллегии адвокатов · Реестровый номер{" "}
+                  {site.registryNumber}
+                </p>
+              </div>
 
               <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <TelegramButton className="w-full sm:w-auto" />
+                <TelegramButton className="w-full sm:w-auto" label="Обсудить ситуацию" />
                 <Link to="/cases" className={`${buttonStyles.secondary} w-full sm:w-auto`}>
-                  Смотреть кейсы <ArrowRight className="size-4" strokeWidth={1.6} />
+                  Посмотреть кейсы <ArrowRight className="size-4" strokeWidth={1.6} />
                 </Link>
               </div>
             </div>
@@ -101,14 +96,14 @@ function Home() {
       <section className="border-y border-border/60 bg-surface/30 py-10">
         <Container>
           <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            <TrustStat label="Адвокат" value={`Реестр Москвы № ${site.registryNumber}`} />
+            <TrustStat label="Практика" value={`с ${site.experienceSince} года`} />
+            <TrustStat label="Статус" value={`Адвокат с ${site.advocateSince} года`} />
             <TrustStat
-              label="Практика"
-              value={`с ${site.experienceSince} года`}
-              note={pluralize(yearsInLaw, "год", "года", "лет")}
+              label="Дела"
+              value={site.completedProjects}
+              note="завершённых юридических проектов и дел"
             />
-            <TrustStat label="География" value="Москва / вся Россия" />
-            <TrustStat label="Формат" value="Очно и онлайн" />
+            <TrustStat label="География" value="Москва · работа по всей России" />
           </dl>
         </Container>
       </section>
