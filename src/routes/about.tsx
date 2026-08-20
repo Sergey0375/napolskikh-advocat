@@ -101,34 +101,7 @@ function AboutPage() {
   return (
     <>
       <Section eyebrow="Об адвокате" title={site.name.replace("Адвокат ", "")}>
-        <div className="mt-14 grid gap-12 lg:grid-cols-[42fr_58fr] lg:gap-16">
-          <div>
-            <img
-              src={photo.url}
-              alt={`${site.name}, портрет`}
-              loading="lazy"
-              width={659}
-              height={878}
-              className="w-full rounded-2xl border border-border/70 object-cover"
-            />
-            <dl className="mt-8 border-t border-border/60">
-              {[
-                { k: "Статус", v: `Адвокат, реестр Москвы № ${site.registryNumber}` },
-                { k: "В юриспруденции", v: `с ${site.experienceSince} года` },
-                { k: "Статус адвоката", v: `с ${site.advocateSince} года` },
-                { k: "Формат работы", v: "Очно и онлайн, вся Россия" },
-              ].map((f) => (
-                <div
-                  key={f.k}
-                  className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 border-b border-border/60 py-3.5 text-sm"
-                >
-                  <dt className="text-muted-foreground">{f.k}</dt>
-                  <dd className="text-right">{f.v}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-
+        <div className="mt-14 grid items-start gap-12 lg:grid-cols-[58fr_42fr] lg:gap-16">
           <div className="max-w-[680px] space-y-5 text-muted-foreground">
             <p>
               Начинала работу в судебном отделе Росимущества, затем работала в юридических фирмах,
