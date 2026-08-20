@@ -185,23 +185,15 @@ function Home() {
 
       {/* 06 — Об адвокате */}
       <Section tone="subtle">
-        <div className="grid items-center gap-12 lg:grid-cols-[42fr_58fr]">
-          <img
-            src={photo.url}
-            alt={`${site.name}, портрет`}
-            loading="lazy"
-            width={659}
-            height={878}
-            className="w-full rounded-2xl border border-border/70 object-cover"
-          />
+        <div className="grid gap-12 lg:grid-cols-[52fr_48fr] lg:gap-16">
           <div>
             <SectionHeader eyebrow="Об адвокате" title="Личная практика, а не конвейер" />
-            <p className="mt-6 max-w-[680px] text-muted-foreground">
+            <p className="mt-6 max-w-[680px] text-body text-muted-foreground">
               {site.role}. {site.reg}. В юриспруденции с {site.experienceSince} года, статус
               адвоката — с {site.advocateSince}-го. Начинала работу в судебном отделе Росимущества,
               затем — в юридических фирмах, сегодня веду частную практику.
             </p>
-            <p className="mt-4 max-w-[680px] text-muted-foreground">
+            <p className="mt-4 max-w-[680px] text-body text-muted-foreground">
               Принцип простой: сначала считаем, что выгоднее — переговоры или суд, и только потом
               выбираем инструменты. Я не берусь за дело, если не вижу для вас реального результата.
             </p>
@@ -209,6 +201,20 @@ function Home() {
               Подробнее об адвокате <ArrowRight className="size-4" strokeWidth={1.6} />
             </Link>
           </div>
+
+          <dl className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border/60 bg-border/60 sm:grid-cols-2">
+            {[
+              { t: "Опыт", d: "Судебный отдел Росимущества, юридические фирмы, частная практика" },
+              { t: "Специализация", d: "Бизнес, недвижимость, семейные и частные активы" },
+              { t: "Формат", d: "Веду дело лично, без передачи помощникам" },
+              { t: "Публичность", d: "Комментарии для РБК, РИА, «Известий» и отраслевых медиа" },
+            ].map((f) => (
+              <div key={f.t} className="bg-background/60 p-6 md:p-7">
+                <dt className="text-[11px] uppercase tracking-[0.2em] text-neon">{f.t}</dt>
+                <dd className="mt-3 text-body-sm text-muted-foreground">{f.d}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </Section>
 
