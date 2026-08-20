@@ -292,19 +292,20 @@ function AboutPage() {
         </div>
       )}
 
-      <Section eyebrow="Медиа" title="Мои публикации" className="pt-0">
-        <ul className="mt-10 divide-y divide-border border-t border-border">
+      <Section id="publications" eyebrow="Медиа" title="Мои публикации">
+        <ul className="mt-12 border-t border-border/60">
           {publications.map((p) => (
-            <li key={p.title}>
+            <li key={p.title} className="border-b border-border/60">
               <a
                 href={p.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col gap-1 py-5 transition-colors hover:text-neon sm:flex-row sm:items-center sm:justify-between"
+                className="flex flex-col gap-1 py-5 transition-colors duration-200 hover:text-neon sm:flex-row sm:items-center sm:justify-between sm:gap-6"
               >
-                <span className="text-base">{p.title}</span>
+                <span className="min-w-0 text-[17px]">{p.title}</span>
                 <span className="flex shrink-0 items-center gap-2 text-sm text-muted-foreground">
-                  {p.source} · {p.year} <ExternalLink className="size-4 text-neon" />
+                  {p.source} · {p.year}
+                  <ExternalLink className="size-4" strokeWidth={1.6} />
                 </span>
               </a>
             </li>
@@ -312,7 +313,8 @@ function AboutPage() {
         </ul>
       </Section>
 
-      <CtaBand />
+      <CTASection />
+
     </>
   );
 }
