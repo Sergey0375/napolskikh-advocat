@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import photo from "@/assets/advokat.jpg.asset.json";
-import { site, services, stages, SITE_URL } from "@/data/site";
+import { site, stages, SITE_URL } from "@/data/site";
 import {
   Section,
   Container,
@@ -9,7 +9,7 @@ import {
   CTASection,
   buttonStyles,
 } from "@/components/site/Section";
-import { PracticeCard, TrustStat } from "@/components/site/cards";
+import { TrustStat } from "@/components/site/cards";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -111,20 +111,7 @@ function Home() {
         </Container>
       </section>
 
-      {/* 03 — Практики */}
-      <Section
-        eyebrow="Практика"
-        title="С какими задачами ко мне приходят"
-        lead="Направления, в которых у меня есть системная практика, а не единичные дела."
-      >
-        <div className="mt-14 grid gap-5 md:grid-cols-2">
-          {services.map((s, i) => (
-            <PracticeCard key={s.slug} service={s} index={i} />
-          ))}
-        </div>
-      </Section>
-
-      {/* 04 — Подход */}
+      {/* 03 — Подход */}
       <Section
         eyebrow="Подход"
         title="Как я работаю"
