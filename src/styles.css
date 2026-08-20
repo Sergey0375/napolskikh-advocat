@@ -201,3 +201,18 @@
 
 
 
+/* Типографическая шкала body: три размера вместо произвольных 15/17px */
+@utility text-body-sm {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+@utility text-body {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+@utility text-body-lg {
+  font-size: 1.125rem;
+  line-height: 1.6;
+}

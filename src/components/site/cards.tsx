@@ -13,10 +13,12 @@ export function TrustStat({
   note?: string | undefined;
 }) {
   return (
-    <div className="py-1">
-      <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">{label}</p>
-      <p className="mt-2 font-display text-lg text-foreground md:text-xl">{value}</p>
-      {note && <p className="mt-1 text-sm text-muted-foreground">{note}</p>}
+    <div className="flex min-h-[112px] flex-col">
+      <dt className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">{label}</dt>
+      <dd className="mt-3 font-display text-xl leading-tight text-foreground md:text-[1.5rem]">
+        {value}
+      </dd>
+      {note && <dd className="mt-2 text-body-sm text-muted-foreground">{note}</dd>}
     </div>
   );
 }
@@ -43,7 +45,7 @@ export function PracticeCard({
         {String(index + 1).padStart(2, "0")}
       </span>
       <h3 className="mt-6 text-balance">{service.title}</h3>
-      <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">{service.short}</p>
+      <p className="mt-4 text-body text-muted-foreground">{service.short}</p>
       <span className="mt-8 inline-flex items-center gap-2 text-[15px] text-neon">
         Подробнее
         <ArrowRight
@@ -68,7 +70,7 @@ export function CaseCard({
         {item.tag}
       </span>
       <Tag className="mt-4 text-balance">{item.title}</Tag>
-      <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">{item.text}</p>
+      <p className="mt-4 text-body text-muted-foreground">{item.text}</p>
       <dl className="mt-auto grid grid-cols-[1fr_auto] items-end gap-4 border-t border-border/60 pt-6 text-sm">
         <div className="min-w-0">
           <dt className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">

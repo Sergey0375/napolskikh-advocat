@@ -48,23 +48,25 @@ function Home() {
       {/* 01 — Hero */}
       <section className="pb-16 pt-14 md:pb-24 md:pt-20">
         <Container>
-          <div className="grid items-center gap-12 lg:grid-cols-[58fr_42fr] lg:gap-16">
-            <div>
+          <div className="grid items-stretch gap-12 lg:grid-cols-[58fr_42fr] lg:gap-16">
+            <div className="flex flex-col">
               <h1 className="text-balance">
                 Адвокат по бизнесу, недвижимости и частным активам
               </h1>
-              <p className="mt-6 max-w-[600px] font-display text-[1.25rem] leading-snug text-foreground md:text-[1.45rem]">
+              <p className="mt-6 max-w-[600px] text-body-lg text-foreground">
                 Помогаю предпринимателям и частным клиентам защищать бизнес, недвижимость и
                 имущество в сложных переговорах, конфликтах и судебных спорах.
               </p>
-              <p className="mt-5 max-w-[600px] text-[15px] leading-relaxed text-muted-foreground">
+              <p className="mt-4 max-w-[600px] text-body text-muted-foreground">
                 Сначала оцениваю риски и экономический результат. Затем предлагаю юридическую
                 стратегию.
               </p>
 
-              <div className="mt-8 max-w-[600px] space-y-1 border-l-2 border-neon/40 pl-5 text-[15px]">
-                <p className="font-medium text-foreground">Напольских Татьяна Сергеевна</p>
-                <p className="text-muted-foreground">
+              <div className="mt-8 max-w-[600px] space-y-1 border-l-2 border-neon/40 pl-5">
+                <p className="text-body font-medium text-foreground">
+                  Напольских Татьяна Сергеевна
+                </p>
+                <p className="text-body-sm text-muted-foreground">
                   Адвокат · Член Московской коллегии адвокатов · Реестровый номер{" "}
                   {site.registryNumber}
                 </p>
@@ -85,7 +87,7 @@ function Home() {
                 width={659}
                 height={878}
                 fetchPriority="high"
-                className="w-full rounded-2xl border border-border/70 object-cover"
+                className="h-full max-h-[620px] w-full rounded-2xl border border-border/70 object-cover object-top"
               />
             </div>
           </div>
@@ -95,15 +97,19 @@ function Home() {
       {/* 02 — Trust bar */}
       <section className="border-y border-border/60 bg-surface/30 py-10">
         <Container>
-          <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            <TrustStat label="Практика" value={`с ${site.experienceSince} года`} />
-            <TrustStat label="Статус" value={`Адвокат с ${site.advocateSince} года`} />
+          <dl className="grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+            <TrustStat label="Практика" value={`с ${site.experienceSince} года`} note="в юриспруденции" />
+            <TrustStat
+              label="Статус"
+              value={`Адвокат с ${site.advocateSince} года`}
+              note="Московская коллегия адвокатов"
+            />
             <TrustStat
               label="Дела"
               value={site.completedProjects}
-              note="завершённых юридических проектов и дел"
+              note="завершённых проектов и дел"
             />
-            <TrustStat label="География" value="Москва · работа по всей России" />
+            <TrustStat label="География" value="Москва" note="работа по всей России" />
           </dl>
         </Container>
       </section>
@@ -145,7 +151,7 @@ function Home() {
           ].map((i) => (
             <div key={i.t} className="border-t border-border/60 pt-6">
               <h3>{i.t}</h3>
-              <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">{i.d}</p>
+              <p className="mt-3 text-body text-muted-foreground">{i.d}</p>
             </div>
           ))}
         </div>
@@ -154,8 +160,8 @@ function Home() {
           {stages.map((s) => (
             <li key={s.n} className="border-t border-border/60 pt-5">
               <span className="font-display text-sm text-neon">{s.n}</span>
-              <h4 className="mt-3 text-[17px]">{s.title}</h4>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
+              <h4 className="mt-3 text-body-lg">{s.title}</h4>
+              <p className="mt-2 text-body-sm text-muted-foreground">{s.text}</p>
             </li>
           ))}
         </ol>
@@ -179,23 +185,14 @@ function Home() {
 
       {/* 06 — Об адвокате */}
       <Section tone="subtle">
-        <div className="grid items-center gap-12 lg:grid-cols-[42fr_58fr]">
-          <img
-            src={photo.url}
-            alt={`${site.name}, портрет`}
-            loading="lazy"
-            width={659}
-            height={878}
-            className="w-full rounded-2xl border border-border/70 object-cover"
-          />
+        <div className="grid gap-12 lg:grid-cols-[52fr_48fr] lg:gap-16">
           <div>
             <SectionHeader eyebrow="Об адвокате" title="Личная практика, а не конвейер" />
-            <p className="mt-6 max-w-[680px] text-muted-foreground">
-              {site.role}. {site.reg}. В юриспруденции с {site.experienceSince} года, статус
-              адвоката — с {site.advocateSince}-го. Начинала работу в судебном отделе Росимущества,
-              затем — в юридических фирмах, сегодня веду частную практику.
+            <p className="mt-6 max-w-[680px] text-body text-muted-foreground">
+              Начинала работу в судебном отделе Росимущества, затем — в юридических фирмах, сегодня
+              веду частную практику. Реестровый номер {site.registryNumber}.
             </p>
-            <p className="mt-4 max-w-[680px] text-muted-foreground">
+            <p className="mt-4 max-w-[680px] text-body text-muted-foreground">
               Принцип простой: сначала считаем, что выгоднее — переговоры или суд, и только потом
               выбираем инструменты. Я не берусь за дело, если не вижу для вас реального результата.
             </p>
@@ -203,6 +200,20 @@ function Home() {
               Подробнее об адвокате <ArrowRight className="size-4" strokeWidth={1.6} />
             </Link>
           </div>
+
+          <dl className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border/60 bg-border/60 sm:grid-cols-2">
+            {[
+              { t: "Опыт", d: "Судебный отдел Росимущества, юридические фирмы, частная практика" },
+              { t: "Специализация", d: "Бизнес, недвижимость, семейные и частные активы" },
+              { t: "Формат", d: "Веду дело лично, без передачи помощникам" },
+              { t: "Публичность", d: "Комментарии для РБК, РИА, «Известий» и отраслевых медиа" },
+            ].map((f) => (
+              <div key={f.t} className="bg-background/60 p-6 md:p-7">
+                <dt className="text-[11px] uppercase tracking-[0.2em] text-neon">{f.t}</dt>
+                <dd className="mt-3 text-body-sm text-muted-foreground">{f.d}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </Section>
 
@@ -226,7 +237,7 @@ function Home() {
                 rel="noopener noreferrer"
                 className="flex flex-col gap-1 py-5 transition-colors duration-200 hover:text-neon sm:flex-row sm:items-center sm:justify-between sm:gap-6"
               >
-                <span className="min-w-0 text-[17px]">{p.title}</span>
+                <span className="min-w-0 text-body-lg">{p.title}</span>
                 <span className="flex shrink-0 items-center gap-2 text-sm text-muted-foreground">
                   {p.source} · {p.year}
                   <ExternalLink className="size-4" strokeWidth={1.6} />
