@@ -1,7 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X, Send } from "lucide-react";
 import { site } from "@/data/site";
+import { Container, buttonStyles } from "@/components/site/Section";
+import { cn } from "@/lib/utils";
 
 const nameWithoutTitle = site.name.replace(/^Адвокат\s+/, "");
 const [surname, ...firstNameParts] = nameWithoutTitle.split(" ");
@@ -18,26 +20,43 @@ const nav = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <Link to="/" className="group flex flex-col leading-tight" onClick={() => setOpen(false)}>
-          <span className="font-display text-[17px] font-semibold tracking-tight text-foreground transition-colors group-hover:text-neon">
+    <header
+      className={cn(
+        "sticky top-0 z-50 transition-colors duration-200",
+        scrolled
+          ? "border-b border-border/60 bg-background/94 backdrop-blur-[12px]"
+          : "border-b border-transparent bg-background",
+      )}
+    >
+      <Container className="flex h-[76px] items-center justify-between gap-6">
+        <Link
+          to="/"
+          className="group flex flex-col leading-tight"
+          onClick={() => setOpen(false)}
+        >
+          <span className="font-display text-[18px] tracking-tight text-foreground transition-colors group-hover:text-neon">
             {surname}
           </span>
-          <span className="text-[11px] tracking-wide text-muted-foreground">
-            {firstName}
-          </span>
+          <span className="text-[11px] tracking-[0.08em] text-muted-foreground">{firstName}</span>
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-8 lg:flex">
           {nav.map((n) => (
             <Link
               key={n.to}
               to={n.to}
               activeOptions={{ exact: n.to === "/" }}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              className="text-[15px] text-muted-foreground transition-colors duration-200 hover:text-foreground"
               activeProps={{ className: "text-foreground" }}
             >
               {n.label}
@@ -50,53 +69,52 @@ export function Header() {
             href={site.telegram}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-2 rounded-md border border-neon/50 px-4 py-2 text-sm font-medium text-neon transition-colors hover:bg-neon hover:text-neon-foreground sm:inline-flex"
+            className={cn(buttonStyles.secondary, "hidden h-11 px-5 text-sm sm:inline-flex")}
           >
-            <Send className="size-4" />
-            Написать в Telegram
+            <Send className="size-4" strokeWidth={1.6} />
+            Telegram
           </a>
           <a
             href={site.telegram}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Написать в Telegram"
-            className="inline-flex size-10 items-center justify-center rounded-md border border-neon/50 text-neon transition-colors hover:bg-neon hover:text-neon-foreground sm:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-[10px] border border-border text-foreground transition-colors hover:border-neon/50 hover:text-neon sm:hidden"
           >
-            <Send className="size-4" />
+            <Send className="size-[18px]" strokeWidth={1.6} />
           </a>
           <button
             type="button"
             aria-label={open ? "Закрыть меню" : "Открыть меню"}
+            aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex size-10 items-center justify-center rounded-md border border-border text-foreground lg:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-[10px] border border-border text-foreground transition-colors hover:border-neon/50 lg:hidden"
           >
-            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+            {open ? (
+              <X className="size-5" strokeWidth={1.6} />
+            ) : (
+              <Menu className="size-5" strokeWidth={1.6} />
+            )}
           </button>
         </div>
-      </div>
+      </Container>
 
       {open && (
-        <nav className="border-t border-border bg-surface px-5 py-3 lg:hidden">
-          {nav.map((n) => (
-            <Link
-              key={n.to}
-              to={n.to}
-              onClick={() => setOpen(false)}
-              className="block border-b border-border/60 py-3 text-sm text-muted-foreground last:border-0"
-              activeProps={{ className: "text-neon" }}
-              activeOptions={{ exact: n.to === "/" }}
-            >
-              {n.label}
-            </Link>
-          ))}
-          <a
-            href={site.telegram}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-md bg-neon px-4 py-3 text-sm font-semibold text-neon-foreground"
-          >
-            <Send className="size-4" /> Написать в Telegram
-          </a>
+        <nav className="border-t border-border/60 bg-background lg:hidden">
+          <Container className="py-2">
+            {nav.map((n) => (
+              <Link
+                key={n.to}
+                to={n.to}
+                onClick={() => setOpen(false)}
+                className="block border-b border-border/50 py-4 text-[15px] text-muted-foreground last:border-0"
+                activeProps={{ className: "text-foreground" }}
+                activeOptions={{ exact: n.to === "/" }}
+              >
+                {n.label}
+              </Link>
+            ))}
+          </Container>
         </nav>
       )}
     </header>

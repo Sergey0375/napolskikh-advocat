@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { X, ExternalLink, Maximize2 } from "lucide-react";
+import { X, ExternalLink } from "lucide-react";
 import photo from "@/assets/advokat.jpg.asset.json";
 import d1 from "@/assets/doc-1.jpg.asset.json";
 import d2 from "@/assets/doc-2.jpg.asset.json";
@@ -10,7 +10,8 @@ import d6 from "@/assets/doc-6.jpg.asset.json";
 import d7 from "@/assets/doc-7.jpg.asset.json";
 import d8 from "@/assets/doc-8.jpg.asset.json";
 import { site, diplomas, publications, SITE_URL } from "@/data/site";
-import { Section, CtaBand } from "@/components/site/Section";
+import { Section, CTASection } from "@/components/site/Section";
+
 import {
   Carousel,
   CarouselContent,
@@ -100,31 +101,75 @@ function AboutPage() {
   return (
     <>
       <Section eyebrow="Об адвокате" title={site.name.replace("Адвокат ", "")}>
-        <div className="mt-10 grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="space-y-4 text-muted-foreground">
+        <div className="mt-14 grid gap-12 lg:grid-cols-[42fr_58fr] lg:gap-16">
+          <div>
+            <img
+              src={photo.url}
+              alt={`${site.name}, портрет`}
+              loading="lazy"
+              width={659}
+              height={878}
+              className="w-full rounded-2xl border border-border/70 object-cover"
+            />
+            <dl className="mt-8 border-t border-border/60">
+              {[
+                { k: "Статус", v: `Адвокат, реестр Москвы № ${site.registryNumber}` },
+                { k: "В юриспруденции", v: `с ${site.experienceSince} года` },
+                { k: "Статус адвоката", v: `с ${site.advocateSince} года` },
+                { k: "Формат работы", v: "Очно и онлайн, вся Россия" },
+              ].map((f) => (
+                <div
+                  key={f.k}
+                  className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 border-b border-border/60 py-3.5 text-sm"
+                >
+                  <dt className="text-muted-foreground">{f.k}</dt>
+                  <dd className="text-right">{f.v}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <div className="max-w-[680px] space-y-5 text-muted-foreground">
             <p>
-              {site.role}. {site.reg}. В юриспруденции с 2019 года, статус адвоката — с 2024-го.
+              Член Московской коллегии адвокатов. {site.reg}. В юриспруденции с{" "}
+              {site.experienceSince} года, статус адвоката — с {site.advocateSince}-го.
+
             </p>
             <p>
               Начинала работу в судебном отделе Росимущества, затем работала в юридических фирмах,
               после чего получила статус адвоката и продолжила развивать частную практику.
             </p>
-            <p>Сегодня моя специализация делится на следующие группы:</p>
-            <ul className="list-disc space-y-2 pl-5">
-              <li>
-                недвижимость и земельное право, что включает выявление рисков, сопровождение сделок,
-                работу с земельными участками и строительством, в том числе судебное сопровождение.
-                Уникальной специализацией являются споры с государственными органами при изъятии объектов,
-                а также при различных способах аренды и покупки таких объектов;
+            <p className="text-foreground">Сегодня моя специализация делится на следующие группы:</p>
+            <ul className="space-y-5 border-t border-border/60 pt-5">
+              <li className="border-b border-border/60 pb-5">
+                <span className="font-display text-[17px] text-foreground">
+                  Недвижимость и земельное право
+                </span>
+                <p className="mt-2">
+                  Выявление рисков, сопровождение сделок, работа с земельными участками и
+                  строительством, в том числе судебное сопровождение. Уникальной специализацией
+                  являются споры с государственными органами при изъятии объектов, а также при
+                  различных способах аренды и покупки таких объектов.
+                </p>
+              </li>
+              <li className="border-b border-border/60 pb-5">
+                <span className="font-display text-[17px] text-foreground">
+                  Семейное и наследственное право
+                </span>
+                <p className="mt-2">
+                  Большой опыт разрешения семейных конфликтов путём переговоров и заключения
+                  соглашений, что является приоритетной задачей, а также судебная защита.
+                </p>
               </li>
               <li>
-                семейное и наследственное право, в частности большой опыт разрешения семейных конфликтов
-                путём переговоров и заключения соглашений, что является приоритетной задачей, а также судебная защита;
-              </li>
-              <li>
-                защита предпринимателей и бизнеса на различных этапах работы. В частности, сопровождаю
-                онлайн-школы и различные проекты в образовательной сфере от начала создания бизнеса,
-                получения образовательных лицензий до создания комфортной и законной деятельности на постлицензионном этапе.
+                <span className="font-display text-[17px] text-foreground">
+                  Защита предпринимателей и бизнеса
+                </span>
+                <p className="mt-2">
+                  Сопровождаю онлайн-школы и различные проекты в образовательной сфере от начала
+                  создания бизнеса, получения образовательных лицензий до создания комфортной и
+                  законной деятельности на постлицензионном этапе.
+                </p>
               </li>
             </ul>
             <p>
@@ -132,77 +177,77 @@ function AboutPage() {
               выбираем инструменты. Я не берусь за дело, если не вижу для вас реального результата.
             </p>
           </div>
-          <img
-            src={photo.url}
-            alt={`${site.name}, портрет`}
-            loading="lazy"
-            width={659}
-            height={878}
-            className="w-full rounded-xl border border-border object-cover"
-          />
         </div>
       </Section>
 
-      <Section eyebrow="Квалификация" title="Дипломы и удостоверения" className="pt-0">
-        <p className="mt-4 max-w-2xl text-muted-foreground">
-          Подтверждённая квалификация: профильное образование, статус адвоката и регулярное
-          повышение квалификации. Нажмите на документ, чтобы рассмотреть его целиком.
+      <Section
+        eyebrow="Квалификация"
+        title="Дипломы и удостоверения"
+        lead="Подтверждённая квалификация: профильное образование, статус адвоката и регулярное повышение квалификации. Нажмите на документ, чтобы рассмотреть его целиком."
+        tone="subtle"
+      >
+        <div className="mt-12 grid gap-5 md:grid-cols-2">
+          {diplomas.slice(0, 2).map((d, i) => (
+            <button
+              key={d.title}
+              type="button"
+              onClick={() => setFull(i)}
+              aria-label={`Открыть документ: ${d.title}`}
+              className="panel panel-hover group flex gap-5 p-5 text-left"
+            >
+              <span className="w-[38%] shrink-0 overflow-hidden rounded-[10px] bg-white">
+                <img
+                  src={imageMap[d.file]}
+                  alt={`${d.title}, ${d.org}`}
+                  loading="lazy"
+                  className="aspect-[4/3] w-full object-cover"
+                />
+              </span>
+              <span className="flex min-w-0 flex-col">
+                <span className="font-display text-[17px] leading-snug">{d.title}</span>
+                <span className="mt-2 text-sm leading-relaxed text-muted-foreground">{d.org}</span>
+                <span className="mt-auto pt-3 text-[11px] uppercase tracking-[0.2em] text-neon">
+                  {d.year}
+                </span>
+              </span>
+            </button>
+          ))}
+        </div>
+
+        <p className="mt-12 text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+          Повышение квалификации
         </p>
 
-        <Carousel
-          opts={{ align: "start", loop: true }}
-          setApi={setApi}
-          className="mt-10"
-        >
+        <Carousel opts={{ align: "start", loop: true }} setApi={setApi} className="mt-5">
           <CarouselContent className="-ml-2">
-            {diplomas.map((d, i) => (
-              <CarouselItem
-                key={d.title}
-                className="basis-[48%] pl-2 sm:basis-[31%] lg:basis-1/4"
-              >
+            {diplomas.slice(2).map((d, i) => (
+              <CarouselItem key={d.title} className="basis-[48%] pl-2 sm:basis-[31%] lg:basis-1/4">
                 <button
                   type="button"
-                  onClick={() => setFull(i)}
+                  onClick={() => setFull(i + 2)}
                   aria-label={`Открыть документ: ${d.title}`}
-                  className="group relative flex h-full w-full gap-2 overflow-hidden rounded-lg border border-border/70 bg-surface/40 p-2 text-left transition-all duration-300 hover:-translate-y-1 hover:border-neon/45 hover:bg-surface/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon/60"
+                  className="group flex h-full w-full gap-2.5 rounded-[10px] border border-border/60 p-2.5 text-left transition-colors duration-200 hover:border-neon/40"
                 >
-                  <div className="relative w-[45%] shrink-0 overflow-hidden rounded-md bg-white">
-                    <div className="aspect-[4/3] w-full">
-                      <img
-                        src={imageMap[d.file]}
-                        alt={`${d.title}, ${d.org}`}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                      />
-                    </div>
-
-                    <span className="absolute left-1.5 top-1.5 rounded bg-background/85 px-1 py-0.5 font-display text-[10px] tracking-wide text-neon">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-
-                    <span className="pointer-events-none absolute inset-0 flex items-end justify-center bg-gradient-to-t from-background/85 via-background/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                      <span className="mb-1.5 inline-flex items-center gap-1 rounded border border-neon/40 bg-background/80 px-2 py-1 text-[10px] text-neon">
-                        <Maximize2 className="size-3" />
-                        Открыть
-                      </span>
-                    </span>
-                  </div>
-
-                  <div className="flex min-w-0 flex-1 flex-col justify-between py-0.5">
-                    <p className="text-[11px] font-medium leading-snug text-foreground">{d.title}</p>
-                    <p className="mt-1 text-[10px] leading-relaxed text-muted-foreground">{d.org}</p>
-                    <span className="mt-auto text-[10px] uppercase tracking-[0.15em] text-neon/80">
-                      {d.year}
-                    </span>
-                  </div>
+                  <span className="w-[42%] shrink-0 overflow-hidden rounded-md bg-white">
+                    <img
+                      src={imageMap[d.file]}
+                      alt={`${d.title}, ${d.org}`}
+                      loading="lazy"
+                      className="aspect-[4/3] w-full object-cover"
+                    />
+                  </span>
+                  <span className="flex min-w-0 flex-col">
+                    <span className="text-[12px] font-medium leading-snug">{d.title}</span>
+                    <span className="mt-auto pt-2 text-[11px] text-muted-foreground">{d.year}</span>
+                  </span>
                 </button>
               </CarouselItem>
             ))}
           </CarouselContent>
 
-          <div className="mt-5 flex items-center justify-between gap-4">
+          <div className="mt-6 flex items-center justify-between gap-4">
             <div className="flex items-center gap-1.5">
-              {diplomas.map((d, i) => (
+              {diplomas.slice(2).map((d, i) => (
                 <button
                   key={d.title}
                   type="button"
@@ -221,6 +266,7 @@ function AboutPage() {
           </div>
         </Carousel>
       </Section>
+
 
 
 
@@ -249,19 +295,20 @@ function AboutPage() {
         </div>
       )}
 
-      <Section eyebrow="Медиа" title="Мои публикации" className="pt-0">
-        <ul className="mt-10 divide-y divide-border border-t border-border">
+      <Section id="publications" eyebrow="Медиа" title="Мои публикации">
+        <ul className="mt-12 border-t border-border/60">
           {publications.map((p) => (
-            <li key={p.title}>
+            <li key={p.title} className="border-b border-border/60">
               <a
                 href={p.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col gap-1 py-5 transition-colors hover:text-neon sm:flex-row sm:items-center sm:justify-between"
+                className="flex flex-col gap-1 py-5 transition-colors duration-200 hover:text-neon sm:flex-row sm:items-center sm:justify-between sm:gap-6"
               >
-                <span className="text-base">{p.title}</span>
+                <span className="min-w-0 text-[17px]">{p.title}</span>
                 <span className="flex shrink-0 items-center gap-2 text-sm text-muted-foreground">
-                  {p.source} · {p.year} <ExternalLink className="size-4 text-neon" />
+                  {p.source} · {p.year}
+                  <ExternalLink className="size-4" strokeWidth={1.6} />
                 </span>
               </a>
             </li>
@@ -269,7 +316,8 @@ function AboutPage() {
         </ul>
       </Section>
 
-      <CtaBand />
+      <CTASection />
+
     </>
   );
 }

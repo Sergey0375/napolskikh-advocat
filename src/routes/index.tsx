@@ -1,9 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ShieldCheck, Scale, Clock3, BadgeCheck, CalendarDays } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import photo from "@/assets/advokat.jpg.asset.json";
-import { site, services, stages, cases, faq, SITE_URL } from "@/data/site";
-import { Section, TelegramButton, CtaBand } from "@/components/site/Section";
-import { serviceIcons, fallbackServiceIcon } from "@/components/site/serviceIcons";
+import { site, services, stages, cases, faq, publications, SITE_URL } from "@/data/site";
+import {
+  Section,
+  Container,
+  SectionHeader,
+  TelegramButton,
+  CTASection,
+  buttonStyles,
+} from "@/components/site/Section";
+import { PracticeCard, CaseCard, TrustStat } from "@/components/site/cards";
+import { FaqList } from "@/components/site/FaqList";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,7 +43,6 @@ export const Route = createFileRoute("/")({
 function Home() {
   const currentYear = new Date().getFullYear();
   const yearsInLaw = currentYear - site.experienceSince;
-  const yearsAdvocate = currentYear - site.advocateSince;
 
   const pluralize = (n: number, one: string, few: string, many: string) => {
     const mod10 = n % 10;
@@ -45,196 +52,211 @@ function Home() {
     return `${n} ${many}`;
   };
 
+  const mediaSources = Array.from(new Set(publications.map((p) => p.source)));
+
   return (
     <>
-      <section className="relative overflow-hidden border-b border-border">
-        <div className="pointer-events-none absolute -top-40 right-0 size-[560px] rounded-full bg-neon/8 blur-[170px]" />
-        <div className="pointer-events-none absolute -bottom-52 -left-24 size-[520px] rounded-full bg-primary/6 blur-[170px]" />
-        <div className="relative mx-auto grid max-w-6xl gap-12 px-5 py-16 md:py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-          <div>
-            <p className="text-[11px] uppercase tracking-[0.22em] text-neon">{site.role}</p>
-            <h1 className="mt-6 text-[2.15rem] leading-[1.08] tracking-[-0.02em] md:text-[3.4rem]">
-              {site.name.replace("Адвокат ", "")}
-              <span className="mt-4 block text-[0.62em] font-normal leading-snug tracking-normal neon-text">{site.tagline}</span>
-            </h1>
+      {/* 01 — Hero */}
+      <section className="pb-16 pt-14 md:pb-24 md:pt-20">
+        <Container>
+          <div className="grid items-center gap-12 lg:grid-cols-[58fr_42fr] lg:gap-16">
+            <div>
+              <p className="text-[11px] uppercase tracking-[0.24em] text-neon">{site.role}</p>
+              <h1 className="mt-6 text-balance">
+                {site.name.replace("Адвокат ", "")}
+              </h1>
+              <p className="mt-6 max-w-[560px] font-display text-[1.35rem] leading-snug text-neon md:text-[1.6rem]">
+                {site.tagline}
+              </p>
 
-            <div className="mt-5 flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-surface/50 px-3 py-1.5 text-xs text-muted-foreground">
-                <BadgeCheck className="size-3.5 text-neon" />
-                Реестр № {site.registryNumber}
-              </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-surface/50 px-3 py-1.5 text-xs text-muted-foreground">
-                <CalendarDays className="size-3.5 text-neon" />
-                В юриспруденции с {site.experienceSince}
-              </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-surface/50 px-3 py-1.5 text-xs text-muted-foreground">
-                <Scale className="size-3.5 text-neon" />
-                Адвокат с {site.advocateSince}
-              </span>
+              <p className="mt-6 max-w-[560px] text-muted-foreground">
+                Веду дела предпринимателей и компаний, а также частные семейные и имущественные
+                споры. Работаю по всей России: документы, переговоры и большая часть заседаний —
+                дистанционно.
+              </p>
+
+              <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <TelegramButton className="w-full sm:w-auto" />
+                <Link to="/cases" className={`${buttonStyles.secondary} w-full sm:w-auto`}>
+                  Смотреть кейсы <ArrowRight className="size-4" strokeWidth={1.6} />
+                </Link>
+              </div>
             </div>
 
-            <p className="mt-6 max-w-xl text-muted-foreground">
-              Веду дела предпринимателей и компаний, а также частные семейные и имущественные
-              споры. Работаю по всей России: документы, переговоры и большая часть заседаний —
-              дистанционно.
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <TelegramButton />
-              <Link
-                to="/cases"
-                className="inline-flex items-center gap-2 rounded-md border border-border px-6 py-3 text-sm font-medium transition-colors hover:border-neon/60 hover:text-neon"
-              >
-                Смотреть кейсы <ArrowRight className="size-4" />
-              </Link>
+            <div className="lg:pl-4">
+              <img
+                src={photo.url}
+                alt={`${site.name}, адвокат`}
+                width={659}
+                height={878}
+                fetchPriority="high"
+                className="w-full rounded-2xl border border-border/70 object-cover"
+              />
             </div>
-
-            <dl className="mt-12 grid grid-cols-3 gap-4 border-t border-border pt-8">
-              {[
-                { k: pluralize(yearsInLaw, "год", "года", "лет"), v: "в юриспруденции" },
-                { k: pluralize(yearsAdvocate, "год", "года", "лет"), v: "статус адвоката" },
-                { k: "180+", v: "завершённых дел" },
-              ].map((s) => (
-                <div key={s.k}>
-                  <dt className="font-display text-2xl text-neon md:text-3xl">{s.k}</dt>
-                  <dd className="mt-1 text-xs text-muted-foreground">{s.v}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
-
-          <div className="relative">
-            <div className="absolute -inset-3 rounded-2xl border border-neon/25" aria-hidden />
-            <img
-              src={photo.url}
-              alt={`${site.name}, адвокат`}
-              width={659}
-              height={878}
-              fetchPriority="high"
-              className="relative w-full rounded-xl border border-border object-cover"
-            />
-          </div>
-        </div>
+        </Container>
       </section>
 
-      <Section
-        eyebrow="Специализация"
-        title="С какими задачами ко мне приходят"
-        lead="Шесть направлений, в которых у меня есть системная практика, а не единичные дела."
-      >
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((s) => {
-            const Icon = serviceIcons[s.slug] ?? fallbackServiceIcon;
-            return (
-              <Link
-                key={s.slug}
-                to="/services"
-                hash={s.slug}
-                className="panel group relative flex flex-col overflow-hidden p-6 transition-all duration-300 hover:-translate-y-1 hover:border-neon/60 hover:shadow-[0_18px_44px_-30px_var(--neon)]"
-              >
-                <span className="pointer-events-none absolute -right-16 -top-16 size-40 rounded-full bg-neon/8 opacity-0 blur-3xl transition-opacity duration-300 group-hover:opacity-100" />
-                <span className="relative inline-flex size-11 items-center justify-center rounded-lg border border-neon/25 bg-neon/10 text-neon transition-colors duration-300 group-hover:bg-neon group-hover:text-neon-foreground">
-                  <Icon className="size-5" />
-                </span>
-                <h3 className="relative mt-5 text-lg leading-snug">{s.title}</h3>
-                <p className="relative mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {s.short}
-                </p>
-                <span className="relative mt-6 inline-flex items-center gap-2 text-sm font-medium text-neon">
-                  Подробнее
-                  <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </span>
-              </Link>
-            );
-          })}
-        </div>
-      </Section>
+      {/* 02 — Trust bar */}
+      <section className="border-y border-border/60 bg-surface/30 py-10">
+        <Container>
+          <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <TrustStat label="Адвокат" value={`Реестр Москвы № ${site.registryNumber}`} />
+            <TrustStat
+              label="Практика"
+              value={`с ${site.experienceSince} года`}
+              note={pluralize(yearsInLaw, "год", "года", "лет")}
+            />
+            <TrustStat label="География" value="Москва / вся Россия" />
+            <TrustStat label="Формат" value="Очно и онлайн" />
+          </dl>
+        </Container>
+      </section>
 
-      <Section eyebrow="Принципы" title="Как я работаю" className="pt-0">
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
-          {[
-            {
-              icon: ShieldCheck,
-              t: "Адвокатская тайна",
-              d: "Статус адвоката защищает вашу информацию сильнее, чем договор с юристом.",
-            },
-            {
-              icon: Scale,
-              t: "Честный прогноз",
-              d: "Называю реальные шансы и худший сценарий до того, как вы заплатите.",
-            },
-            {
-              icon: Clock3,
-              t: "Связь без ожидания",
-              d: "Отвечаю в Telegram в рабочее время, отчитываюсь после каждого действия.",
-            },
-          ].map((i) => (
-            <div key={i.t} className="panel p-6">
-              <i.icon className="size-6 text-neon" />
-              <h3 className="mt-4 text-lg">{i.t}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{i.d}</p>
-            </div>
+      {/* 03 — Практики */}
+      <Section
+        eyebrow="Практика"
+        title="С какими задачами ко мне приходят"
+        lead="Направления, в которых у меня есть системная практика, а не единичные дела."
+      >
+        <div className="mt-14 grid gap-5 md:grid-cols-2">
+          {services.map((s, i) => (
+            <PracticeCard key={s.slug} service={s} index={i} />
           ))}
         </div>
       </Section>
 
+      {/* 04 — Подход */}
       <Section
-        eyebrow="Процесс"
-        title="Этапы работы"
+        eyebrow="Подход"
+        title="Как я работаю"
         lead="Понятная последовательность: вы всегда знаете, что происходит и сколько это стоит."
-        className="pt-0"
+        tone="subtle"
       >
-        <ol className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-14 grid gap-x-10 gap-y-10 md:grid-cols-3">
+          {[
+            {
+              t: "Адвокатская тайна",
+              d: "Статус адвоката защищает вашу информацию сильнее, чем договор с юристом.",
+            },
+            {
+              t: "Честный прогноз",
+              d: "Называю реальные шансы и худший сценарий до того, как вы заплатите.",
+            },
+            {
+              t: "Связь без ожидания",
+              d: "Отвечаю в Telegram в рабочее время, отчитываюсь после каждого действия.",
+            },
+          ].map((i) => (
+            <div key={i.t} className="border-t border-border/60 pt-6">
+              <h3>{i.t}</h3>
+              <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">{i.d}</p>
+            </div>
+          ))}
+        </div>
+
+        <ol className="mt-16 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-5">
           {stages.map((s) => (
-            <li key={s.n} className="panel p-5">
+            <li key={s.n} className="border-t border-border/60 pt-5">
               <span className="font-display text-sm text-neon">{s.n}</span>
-              <h3 className="mt-3 text-base">{s.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{s.text}</p>
+              <h4 className="mt-3 text-[17px]">{s.title}</h4>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
             </li>
           ))}
         </ol>
       </Section>
 
-      <CtaBand />
-
-      <Section eyebrow="Практика" title="Избранные дела" className="pb-0">
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
-          {cases.slice(0, 3).map((c) => (
-            <article key={c.title} className="panel p-6">
-              <span className="text-[11px] uppercase tracking-[0.18em] text-neon">{c.tag}</span>
-              <h3 className="mt-3 text-lg">{c.title}</h3>
-              <p className="mt-3 text-sm text-muted-foreground">{c.text}</p>
-              <p className="mt-4 border-t border-border pt-4 text-sm">
-                <span className="text-neon">{c.result}</span>
-                <span className="text-muted-foreground"> · {c.term}</span>
-              </p>
-            </article>
+      {/* 05 — Кейсы */}
+      <Section
+        eyebrow="Кейсы"
+        title="Избранные дела"
+        lead="Детали изменены и обезличены в силу адвокатской тайны — суммы и результаты реальные."
+      >
+        <div className="mt-14 grid gap-5 md:grid-cols-2">
+          {cases.slice(0, 4).map((c) => (
+            <CaseCard key={c.title} item={c} />
           ))}
         </div>
-        <Link
-          to="/cases"
-          className="mt-8 inline-flex items-center gap-2 text-sm text-neon hover:underline"
-        >
-          Все кейсы <ArrowRight className="size-4" />
+        <Link to="/cases" className={`${buttonStyles.link} mt-10`}>
+          Все кейсы <ArrowRight className="size-4" strokeWidth={1.6} />
         </Link>
       </Section>
 
-      <Section eyebrow="Вопросы" title="Коротко о главном">
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
-          {faq.slice(0, 4).map((f) => (
-            <div key={f.q} className="panel p-6">
-              <h3 className="text-base">{f.q}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{f.a}</p>
-            </div>
-          ))}
+      {/* 06 — Об адвокате */}
+      <Section tone="subtle">
+        <div className="grid items-center gap-12 lg:grid-cols-[42fr_58fr]">
+          <img
+            src={photo.url}
+            alt={`${site.name}, портрет`}
+            loading="lazy"
+            width={659}
+            height={878}
+            className="w-full rounded-2xl border border-border/70 object-cover"
+          />
+          <div>
+            <SectionHeader eyebrow="Об адвокате" title="Личная практика, а не конвейер" />
+            <p className="mt-6 max-w-[680px] text-muted-foreground">
+              {site.role}. {site.reg}. В юриспруденции с {site.experienceSince} года, статус
+              адвоката — с {site.advocateSince}-го. Начинала работу в судебном отделе Росимущества,
+              затем — в юридических фирмах, сегодня веду частную практику.
+            </p>
+            <p className="mt-4 max-w-[680px] text-muted-foreground">
+              Принцип простой: сначала считаем, что выгоднее — переговоры или суд, и только потом
+              выбираем инструменты. Я не берусь за дело, если не вижу для вас реального результата.
+            </p>
+            <Link to="/about" className={`${buttonStyles.link} mt-8`}>
+              Подробнее об адвокате <ArrowRight className="size-4" strokeWidth={1.6} />
+            </Link>
+          </div>
         </div>
-        <Link
-          to="/faq"
-          className="mt-8 inline-flex items-center gap-2 text-sm text-neon hover:underline"
-        >
-          Все вопросы <ArrowRight className="size-4" />
+      </Section>
+
+      {/* 07 — СМИ */}
+      <Section
+        eyebrow="Медиа"
+        title="Комментирую право для деловых изданий"
+        lead="Публикации и экспертные комментарии в федеральных и отраслевых медиа."
+      >
+        <p className="mt-10 flex flex-wrap gap-x-8 gap-y-3 font-display text-lg text-muted-foreground">
+          {mediaSources.map((s) => (
+            <span key={s}>{s}</span>
+          ))}
+        </p>
+        <ul className="mt-10 border-t border-border/60">
+          {publications.slice(0, 4).map((p) => (
+            <li key={p.title} className="border-b border-border/60">
+              <a
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col gap-1 py-5 transition-colors duration-200 hover:text-neon sm:flex-row sm:items-center sm:justify-between sm:gap-6"
+              >
+                <span className="min-w-0 text-[17px]">{p.title}</span>
+                <span className="flex shrink-0 items-center gap-2 text-sm text-muted-foreground">
+                  {p.source} · {p.year}
+                  <ExternalLink className="size-4" strokeWidth={1.6} />
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <Link to="/about" hash="publications" className={`${buttonStyles.link} mt-10`}>
+          Все публикации <ArrowRight className="size-4" strokeWidth={1.6} />
         </Link>
       </Section>
+
+      {/* 08 — FAQ */}
+      <Section eyebrow="Вопросы" title="Коротко о главном" tone="subtle">
+        <div className="mt-12 max-w-[860px]">
+          <FaqList items={faq.slice(0, 6)} />
+        </div>
+        <Link to="/faq" className={`${buttonStyles.link} mt-10`}>
+          Все вопросы <ArrowRight className="size-4" strokeWidth={1.6} />
+        </Link>
+      </Section>
+
+      {/* 09 — Final CTA */}
+      <CTASection />
     </>
   );
 }
