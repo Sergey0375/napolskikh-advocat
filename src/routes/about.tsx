@@ -141,6 +141,25 @@ function AboutPage() {
               </li>
             </ul>
           </div>
+
+          <div className="flex flex-col gap-5 lg:sticky lg:top-28">
+            <img
+              src={photo.url}
+              alt={`${site.name}, портрет`}
+              loading="lazy"
+              width={659}
+              height={878}
+              className="w-full rounded-2xl border border-border/70 object-cover object-top"
+            />
+            <img
+              src={portrait.url}
+              alt={`${site.name} — адвокат`}
+              loading="lazy"
+              width={623}
+              height={831}
+              className="w-full rounded-2xl border border-border/60 object-cover object-top"
+            />
+          </div>
         </div>
       </Section>
 
