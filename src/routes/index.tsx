@@ -161,7 +161,7 @@ function Home() {
           {stages.map((s) => (
             <li key={s.n} className="border-t border-border/60 pt-5">
               <span className="font-display text-sm text-neon">{s.n}</span>
-              <h4 className="mt-3 text-body-lg">{s.title}</h4>
+              <h4 className="mt-3">{s.title}</h4>
               <p className="mt-2 text-body-sm text-muted-foreground">{s.text}</p>
             </li>
           ))}
@@ -219,7 +219,7 @@ function Home() {
         title="Комментирую право для деловых изданий"
         lead="Публикации и экспертные комментарии в федеральных и отраслевых медиа."
       >
-        <p className="mt-10 flex flex-wrap gap-x-8 gap-y-3 font-display text-lg text-muted-foreground">
+        <p className="mt-10 flex flex-wrap gap-x-8 gap-y-3 font-display text-base text-muted-foreground md:text-lg">
           {mediaSources.map((s) => (
             <span key={s}>{s}</span>
           ))}
@@ -233,7 +233,7 @@ function Home() {
                 rel="noopener noreferrer"
                 className="flex flex-col gap-1 py-5 transition-colors duration-200 hover:text-neon sm:flex-row sm:items-center sm:justify-between sm:gap-6"
               >
-                <span className="min-w-0 text-body-lg">{p.title}</span>
+                <span className="min-w-0 text-body">{p.title}</span>
                 <span className="flex shrink-0 items-center gap-2 text-sm text-muted-foreground">
                   {p.source} · {p.year}
                   <ExternalLink className="size-4" strokeWidth={1.6} />
