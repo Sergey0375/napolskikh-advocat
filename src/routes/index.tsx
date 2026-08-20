@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import photo from "@/assets/advokat.jpg.asset.json";
+import portrait from "@/assets/tatiana-portrait.png.asset.json";
 import { site, services, stages, cases, faq, publications, SITE_URL } from "@/data/site";
 import {
   Section,
