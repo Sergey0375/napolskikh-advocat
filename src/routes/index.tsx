@@ -189,9 +189,8 @@ function Home() {
           <div>
             <SectionHeader eyebrow="Об адвокате" title="Личная практика, а не конвейер" />
             <p className="mt-6 max-w-[680px] text-body text-muted-foreground">
-              {site.role}. {site.reg}. В юриспруденции с {site.experienceSince} года, статус
-              адвоката — с {site.advocateSince}-го. Начинала работу в судебном отделе Росимущества,
-              затем — в юридических фирмах, сегодня веду частную практику.
+              Начинала работу в судебном отделе Росимущества, затем — в юридических фирмах, сегодня
+              веду частную практику. Реестровый номер {site.registryNumber}.
             </p>
             <p className="mt-4 max-w-[680px] text-body text-muted-foreground">
               Принцип простой: сначала считаем, что выгоднее — переговоры или суд, и только потом
