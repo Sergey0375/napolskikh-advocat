@@ -11,18 +11,27 @@ const BASE = "/napolskikh-advocat/";
  * not exist on GitHub Pages. `scripts/fetch-lovable-assets.mjs` mirrors them into
  * `public/media/<asset_id>/<filename>`; this plugin points the imports there.
  */
+const VIRTUAL_PREFIX = "\0static-lovable-asset:";
+
 function staticLovableAssets(): Plugin {
   return {
     name: "static-lovable-assets",
     enforce: "pre",
+    async resolveId(source, importer) {
+      if (!source.endsWith(".asset.json")) return null;
+      const resolved = await this.resolve(source, importer, { skipSelf: true });
+      if (!resolved) return null;
+      return `${VIRTUAL_PREFIX}${resolved.id}`;
+    },
     async load(id) {
-      const [file] = id.split("?");
-      if (!file.endsWith(".asset.json")) return null;
+      if (!id.startsWith(VIRTUAL_PREFIX)) return null;
+      const file = id.slice(VIRTUAL_PREFIX.length).split("?")[0];
 
       const meta = JSON.parse(await readFile(file, "utf8"));
-      if (!meta?.asset_id || !meta?.original_filename) return null;
+      const url = meta?.asset_id && meta?.original_filename
+        ? `${BASE}media/${meta.asset_id}/${meta.original_filename}`
+        : meta.url;
 
-      const url = `${BASE}media/${meta.asset_id}/${meta.original_filename}`;
       return `export default ${JSON.stringify({ ...meta, url })};`;
     },
   };
