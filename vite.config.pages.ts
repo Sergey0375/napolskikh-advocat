@@ -7,7 +7,6 @@ export default defineConfig({
     base: "/napolskikh-advocat/",
   },
   tanstackStart: {
-    server: { entry: "server" },
     // Render every route to static HTML so each URL works as a real file on Pages.
     prerender: { enabled: true, crawlLinks: true, autoSubfolderIndex: true },
     pages: [
@@ -19,5 +18,6 @@ export default defineConfig({
       { path: "/contact" },
     ],
   },
-  nitro: { preset: "static" },
+  // GitHub Pages serves plain files — no server bundle/deploy adapter needed.
+  nitro: false,
 });
