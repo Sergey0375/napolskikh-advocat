@@ -21,11 +21,12 @@ function staticLovableAssets(): Plugin {
       if (!source.endsWith(".asset.json")) return null;
       const resolved = await this.resolve(source, importer, { skipSelf: true });
       if (!resolved) return null;
-      return `${VIRTUAL_PREFIX}${resolved.id}`;
+      // ".js" suffix keeps the built-in JSON plugin from re-parsing our JS output.
+      return `${VIRTUAL_PREFIX}${resolved.id}.js`;
     },
     async load(id) {
       if (!id.startsWith(VIRTUAL_PREFIX)) return null;
-      const file = id.slice(VIRTUAL_PREFIX.length).split("?")[0];
+      const file = id.slice(VIRTUAL_PREFIX.length).split("?")[0].replace(/\.js$/, "");
 
       const meta = JSON.parse(await readFile(file, "utf8"));
       const url = meta?.asset_id && meta?.original_filename
