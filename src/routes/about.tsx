@@ -168,20 +168,20 @@ function AboutPage() {
               type="button"
               onClick={() => setFull(i)}
               aria-label={`Открыть документ: ${d.title}`}
-              className="panel panel-hover group flex gap-5 p-5 text-left"
+              className="panel panel-hover group flex flex-col overflow-hidden text-left"
             >
-              <span className="block w-[38%] shrink-0 self-stretch overflow-hidden rounded-[10px] bg-white">
+              <span className="relative aspect-[4/3] w-full overflow-hidden bg-muted/40">
                 <img
                   src={imageMap[d.file]}
                   alt={`${d.title}, ${d.org}`}
                   loading="lazy"
-                  className="h-full min-h-[120px] w-full object-cover object-top"
+                  className="h-full w-full object-contain object-top p-3 transition-transform duration-300 group-hover:scale-[1.02]"
                 />
               </span>
-              <span className="flex min-w-0 flex-col">
+              <span className="flex flex-col p-5">
                 <span className="font-display text-[17px] leading-snug">{d.title}</span>
                 <span className="mt-2 text-sm leading-relaxed text-muted-foreground">{d.org}</span>
-                <span className="mt-auto pt-3 text-[11px] uppercase tracking-[0.2em] text-neon">
+                <span className="mt-4 text-[11px] uppercase tracking-[0.2em] text-neon">
                   {d.year}
                 </span>
               </span>
@@ -194,26 +194,34 @@ function AboutPage() {
         </p>
 
         <Carousel opts={{ align: "start", loop: true }} setApi={setApi} className="mt-5">
-          <CarouselContent className="-ml-2">
+          <CarouselContent className="-ml-3">
             {diplomas.slice(2).map((d, i) => (
-              <CarouselItem key={d.title} className="basis-[48%] pl-2 sm:basis-[31%] lg:basis-1/4">
+              <CarouselItem
+                key={d.title}
+                className="basis-[70%] pl-3 sm:basis-[45%] lg:basis-1/4"
+              >
                 <button
                   type="button"
                   onClick={() => setFull(i + 2)}
                   aria-label={`Открыть документ: ${d.title}`}
-                  className="group flex h-full w-full gap-2.5 rounded-[10px] border border-border/60 p-2.5 text-left transition-colors duration-200 hover:border-neon/40"
+                  className="panel-hover group flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-border/60 text-left transition-colors duration-200 hover:border-neon/40"
                 >
-                  <span className="block w-[42%] shrink-0 self-stretch overflow-hidden rounded-md bg-white">
+                  <span className="relative aspect-[4/3] w-full overflow-hidden bg-muted/40">
                     <img
                       src={imageMap[d.file]}
                       alt={`${d.title}, ${d.org}`}
                       loading="lazy"
-                      className="h-full min-h-[92px] w-full object-cover object-top"
+                      className="h-full w-full object-contain object-top p-2 transition-transform duration-300 group-hover:scale-[1.02]"
                     />
                   </span>
-                  <span className="flex min-w-0 flex-col">
-                    <span className="text-[12px] font-medium leading-snug">{d.title}</span>
-                    <span className="mt-auto pt-2 text-[11px] text-muted-foreground">{d.year}</span>
+                  <span className="flex flex-col p-3">
+                    <span className="text-[13px] font-medium leading-snug">{d.title}</span>
+                    <span className="mt-1 text-[11px] leading-relaxed text-muted-foreground line-clamp-2">
+                      {d.org}
+                    </span>
+                    <span className="mt-3 text-[11px] uppercase tracking-[0.18em] text-neon">
+                      {d.year}
+                    </span>
                   </span>
                 </button>
               </CarouselItem>
