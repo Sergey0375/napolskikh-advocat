@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Check, X, ArrowRight } from "lucide-react";
 import { services, site, type Service, SITE_URL } from "@/data/site";
 import { Section, CTASection, TelegramButton, buttonStyles } from "@/components/site/Section";
+import { cardGlowHover } from "@/components/site/cards";
 
 
 export const Route = createFileRoute("/services")({
@@ -65,8 +66,12 @@ function ServicesPage() {
             <article
               key={s.slug}
               id={s.slug}
-              className="panel panel-hover group flex scroll-mt-28 flex-col p-7 md:p-9"
+              className={`panel flex scroll-mt-28 flex-col p-7 md:p-9 ${cardGlowHover}`}
             >
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neon/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              />
               <span className="font-display text-sm text-neon">
                 {String(i + 1).padStart(2, "0")}
               </span>

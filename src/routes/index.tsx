@@ -66,8 +66,8 @@ function Home() {
 
               <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <TelegramButton className="w-full sm:w-auto" label="Обсудить ситуацию" />
-                <Link to="/cases" className={`${buttonStyles.secondary} w-full sm:w-auto`}>
-                  Посмотреть кейсы <ArrowRight className="size-4" strokeWidth={1.6} />
+                <Link to="/services" className={`${buttonStyles.secondary} w-full sm:w-auto`}>
+                  Мои услуги <ArrowRight className="size-4" strokeWidth={1.6} />
                 </Link>
               </div>
 
