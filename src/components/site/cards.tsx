@@ -23,6 +23,10 @@ export function TrustStat({
   );
 }
 
+/** Глубокая «золотая» тень при наведении — для карточек услуг/практик. */
+export const cardGlowHover =
+  "group relative overflow-hidden transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-neon/40 hover:shadow-[0_24px_60px_-24px_color-mix(in_oklab,var(--neon)_45%,transparent)]";
+
 export function PracticeCard({
   service,
   index,
