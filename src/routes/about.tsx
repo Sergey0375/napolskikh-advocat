@@ -170,12 +170,12 @@ function AboutPage() {
               aria-label={`Открыть документ: ${d.title}`}
               className="panel panel-hover group flex gap-5 p-5 text-left"
             >
-              <span className="w-[38%] shrink-0 overflow-hidden rounded-[10px] bg-white">
+              <span className="block w-[38%] shrink-0 self-stretch overflow-hidden rounded-[10px] bg-white">
                 <img
                   src={imageMap[d.file]}
                   alt={`${d.title}, ${d.org}`}
                   loading="lazy"
-                  className="aspect-[4/3] w-full object-cover"
+                  className="h-full min-h-[120px] w-full object-cover object-top"
                 />
               </span>
               <span className="flex min-w-0 flex-col">
@@ -203,12 +203,12 @@ function AboutPage() {
                   aria-label={`Открыть документ: ${d.title}`}
                   className="group flex h-full w-full gap-2.5 rounded-[10px] border border-border/60 p-2.5 text-left transition-colors duration-200 hover:border-neon/40"
                 >
-                  <span className="w-[42%] shrink-0 overflow-hidden rounded-md bg-white">
+                  <span className="block w-[42%] shrink-0 self-stretch overflow-hidden rounded-md bg-white">
                     <img
                       src={imageMap[d.file]}
                       alt={`${d.title}, ${d.org}`}
                       loading="lazy"
-                      className="aspect-[4/3] w-full object-cover"
+                      className="h-full min-h-[92px] w-full object-cover object-top"
                     />
                   </span>
                   <span className="flex min-w-0 flex-col">
