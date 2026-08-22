@@ -41,10 +41,15 @@ export function PracticeCard({
       to="/services"
       hash={service.slug}
       className={cn(
-        "panel panel-hover group flex flex-col p-7 md:p-9",
+        "panel flex flex-col p-7 md:p-9",
+        cardGlowHover,
         className,
       )}
     >
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neon/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+      />
       <span className="font-display text-sm text-neon">
         {String(index + 1).padStart(2, "0")}
       </span>
@@ -69,11 +74,7 @@ export function CaseCard({
   as?: "h2" | "h3";
 }) {
   return (
-    <article className="panel group relative flex flex-col overflow-hidden p-7 transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-neon/40 hover:shadow-[0_24px_60px_-24px_color-mix(in_oklab,var(--neon)_45%,transparent)] md:p-9">
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neon/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-      />
+    <article className="panel panel-hover group flex flex-col p-7 md:p-9">
       <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
         {item.tag}
       </span>
