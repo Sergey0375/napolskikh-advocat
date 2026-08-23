@@ -211,7 +211,7 @@ function AboutPage() {
                       src={imageMap[d.file]}
                       alt={`${d.title}, ${d.org}`}
                       loading="lazy"
-                      className="h-full w-full object-contain object-top p-2 transition-transform duration-300 group-hover:scale-[1.02]"
+                      className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
                     />
                   </span>
                   <span className="flex flex-col p-3">
