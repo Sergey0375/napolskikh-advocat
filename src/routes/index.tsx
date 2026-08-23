@@ -136,12 +136,21 @@ function Home() {
           ))}
         </div>
 
-        <ol className="mt-16 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-5">
+        <ol className="mt-16 grid gap-x-6 gap-y-6 sm:grid-cols-2 lg:grid-cols-5">
           {stages.map((s) => (
-            <li key={s.n} className="border-t border-border/60 pt-5">
-              <span className="font-display text-sm text-neon">{s.n}</span>
-              <h4 className="mt-3">{s.title}</h4>
-              <p className="mt-2 text-body-sm text-muted-foreground">{s.text}</p>
+            <li
+              key={s.n}
+              className="group rounded-[10px] border border-border/40 bg-background/40 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-neon/40 hover:bg-surface/60 hover:shadow-[0_8px_30px_-12px_rgba(212,175,140,0.18)]"
+            >
+              <span className="font-display text-sm text-neon transition-colors duration-300 group-hover:text-neon/80">
+                {s.n}
+              </span>
+              <h4 className="mt-3 transition-colors duration-300 group-hover:text-foreground">
+                {s.title}
+              </h4>
+              <p className="mt-2 text-body-sm text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/90">
+                {s.text}
+              </p>
             </li>
           ))}
         </ol>
