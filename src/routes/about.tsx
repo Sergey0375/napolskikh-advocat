@@ -158,7 +158,7 @@ function AboutPage() {
       <Section
         eyebrow="Квалификация"
         title="Дипломы и удостоверения"
-        lead="Подтверждённая квалификация: профильное образование, статус адвоката и регулярное повышение квалификации. Нажмите на документ, чтобы рассмотреть его целиком."
+        lead="Подтверждённая квалификация: профильное образование, статус адвоката и регулярное повышение квалификации."
         tone="subtle"
       >
         <div className="mt-12 grid gap-5 md:grid-cols-2">
@@ -278,7 +278,7 @@ function AboutPage() {
         </div>
       )}
 
-      <Section id="publications" eyebrow="Медиа" title="Мои публикации">
+      <Section id="publications" eyebrow="Медиа" title="Мои публикации и комментарии в федеральных СМИ">
         <ul className="mt-12 border-t border-border/60">
           {publications.map((p) => (
             <li key={p.title} className="border-b border-border/60">
