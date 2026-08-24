@@ -9,7 +9,7 @@ import d5 from "@/assets/doc-5.jpg.asset.json";
 import d6 from "@/assets/doc-6.jpg.asset.json";
 import d7 from "@/assets/doc-7.jpg.asset.json";
 import d8 from "@/assets/doc-8.jpg.asset.json";
-import { site, diplomas, publications, SITE_URL } from "@/data/site";
+import { site, diplomas, publications, SITE_URL, OG_IMAGE } from "@/data/site";
 import { Section, CTASection } from "@/components/site/Section";
 
 import {
@@ -46,9 +46,15 @@ export const Route = createFileRoute("/about")({
         property: "og:description",
         content: "Квалификация, дипломы и публикации адвоката.",
       },
-      { property: "og:url", content: `${SITE_URL}/about` },
+      { property: "og:url", content: `${SITE_URL}/about/` },
+      { property: "og:type", content: "profile" },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "628" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: OG_IMAGE },
     ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/about` }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/about/` }],
     scripts: [
       {
         type: "application/ld+json",

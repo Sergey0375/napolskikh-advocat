@@ -101,8 +101,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Адвокат в Москве: защита предпринимателей, арбитражные споры, недвижимость и земельное право, семейные и наследственные дела.",
       },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7eb8e6a0-78ea-46a9-ab93-f80877ee4245/id-preview-a5a4bb66--5980042a-0711-4c5f-a5b2-696ef22dcae1.lovable.app-1785661262048.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7eb8e6a0-78ea-46a9-ab93-f80877ee4245/id-preview-a5a4bb66--5980042a-0711-4c5f-a5b2-696ef22dcae1.lovable.app-1785661262048.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Check, X, ArrowRight } from "lucide-react";
-import { services, site, type Service, SITE_URL } from "@/data/site";
+import { services, site, type Service, SITE_URL, OG_IMAGE } from "@/data/site";
 import { Section, CTASection, TelegramButton, buttonStyles } from "@/components/site/Section";
 import { cardGlowHover } from "@/components/site/cards";
 
@@ -20,9 +20,15 @@ export const Route = createFileRoute("/services")({
         property: "og:description",
         content: "Шесть направлений практики с понятным составом работ и стоимостью по этапам.",
       },
-      { property: "og:url", content: `${SITE_URL}/services` },
+      { property: "og:url", content: `${SITE_URL}/services/` },
+      { property: "og:type", content: "website" },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "628" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: OG_IMAGE },
     ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/services` }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/services/` }],
     scripts: [
       {
         type: "application/ld+json",

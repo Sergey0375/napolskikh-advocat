@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Send, Phone, Mail, MapPin, Clock } from "lucide-react";
-import { site, SITE_URL } from "@/data/site";
+import { site, SITE_URL, OG_IMAGE } from "@/data/site";
 import { Section, buttonStyles } from "@/components/site/Section";
 import { ContactForm } from "@/components/site/ContactForm";
 
@@ -15,9 +15,15 @@ export const Route = createFileRoute("/contact")({
       },
       { property: "og:title", content: `Контакты адвоката — ${site.name}` },
       { property: "og:description", content: "Telegram, телефон и форма обращения к адвокату." },
-      { property: "og:url", content: `${SITE_URL}/contact` },
+      { property: "og:url", content: `${SITE_URL}/contact/` },
+      { property: "og:type", content: "website" },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "628" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: OG_IMAGE },
     ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/contact` }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/contact/` }],
     scripts: [
       {
         type: "application/ld+json",

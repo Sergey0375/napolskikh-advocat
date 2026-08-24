@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import photo from "@/assets/advokat.jpg.asset.json";
-import { site, stages, SITE_URL } from "@/data/site";
+import { site, stages, SITE_URL, OG_IMAGE } from "@/data/site";
 import {
   Section,
   Container,
@@ -26,9 +26,13 @@ export const Route = createFileRoute("/")({
         content:
           "Защита бизнеса, недвижимости и семьи: арбитраж, сделки, споры с госорганами, семейные и наследственные дела.",
       },
-      { property: "og:type", content: "website" },
-
       { property: "og:url", content: `${SITE_URL}/` },
+      { property: "og:type", content: "website" },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "628" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: OG_IMAGE },
     ],
     links: [
       { rel: "canonical", href: `${SITE_URL}/` },

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { faq, site, SITE_URL } from "@/data/site";
+import { faq, site, SITE_URL, OG_IMAGE } from "@/data/site";
 import { Section, CTASection } from "@/components/site/Section";
 import { FaqList } from "@/components/site/FaqList";
 
@@ -18,9 +18,15 @@ export const Route = createFileRoute("/faq")({
         property: "og:description",
         content: "Ответы на частые вопросы доверителей о работе с адвокатом.",
       },
-      { property: "og:url", content: `${SITE_URL}/faq` },
+      { property: "og:url", content: `${SITE_URL}/faq/` },
+      { property: "og:type", content: "website" },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "628" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: OG_IMAGE },
     ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/faq` }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/faq/` }],
     scripts: [
       {
         type: "application/ld+json",

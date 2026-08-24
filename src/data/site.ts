@@ -1,4 +1,5 @@
-export const SITE_URL = "https://napolskikh-advocat.lovable.app";
+export const SITE_URL = "https://napolskikh.ru";
+export const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 export const site = {
   name: "Адвокат Напольских Татьяна Сергеевна",
