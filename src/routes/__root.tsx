@@ -102,7 +102,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Адвокат в Москве: защита предпринимателей, арбитражные споры, недвижимость и земельное право, семейные и наследственные дела.",
       },
     ],
-    ],
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
