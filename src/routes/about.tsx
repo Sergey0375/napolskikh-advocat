@@ -205,31 +205,9 @@ function AboutPage() {
         lead="Подтверждённая квалификация: профильное образование, статус адвоката и регулярное повышение квалификации."
         tone="subtle"
       >
-        <div className="mt-12 grid gap-5 md:grid-cols-2">
+        <div className="mt-12 grid gap-3 md:grid-cols-2">
           {diplomas.slice(0, 2).map((d, i) => (
-            <button
-              key={d.title}
-              type="button"
-              onClick={() => setFull(i)}
-              aria-label={`Открыть документ: ${d.title}`}
-              className="panel panel-hover group flex flex-col overflow-hidden text-left"
-            >
-              <span className="relative aspect-[4/3] w-full overflow-hidden bg-muted/40">
-                <img
-                  src={imageMap[d.file]}
-                  alt={`${d.title}, ${d.org}`}
-                  loading="lazy"
-                  className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
-                />
-              </span>
-              <span className="flex flex-col p-5">
-                <span className="font-display text-[17px] leading-snug">{d.title}</span>
-                <span className="mt-2 text-sm leading-relaxed text-muted-foreground">{d.org}</span>
-                <span className="mt-4 text-[11px] uppercase tracking-[0.2em] text-neon">
-                  {d.year}
-                </span>
-              </span>
-            </button>
+            <DiplomaCard key={d.title} diploma={d} onClick={() => setFull(i)} />
           ))}
         </div>
 
