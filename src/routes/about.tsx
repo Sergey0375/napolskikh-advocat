@@ -31,6 +31,43 @@ const imageMap: Record<string, string> = {
   "doc-8": d8.url,
 };
 
+type Diploma = (typeof diplomas)[number];
+
+function DiplomaCard({
+  diploma,
+  onClick,
+}: {
+  diploma: Diploma;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={`Открыть документ: ${diploma.title}`}
+      className="panel-hover group flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-border/60 text-left transition-colors duration-200 hover:border-neon/40"
+    >
+      <span className="relative aspect-[4/3] w-full overflow-hidden bg-muted/40">
+        <img
+          src={imageMap[diploma.file]}
+          alt={`${diploma.title}, ${diploma.org}`}
+          loading="lazy"
+          className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
+        />
+      </span>
+      <span className="flex flex-col p-3">
+        <span className="text-[13px] font-medium leading-snug">{diploma.title}</span>
+        <span className="mt-1 text-[11px] leading-relaxed text-muted-foreground line-clamp-2">
+          {diploma.org}
+        </span>
+        <span className="mt-3 text-[11px] uppercase tracking-[0.18em] text-neon">
+          {diploma.year}
+        </span>
+      </span>
+    </button>
+  );
+}
+
 
 export const Route = createFileRoute("/about")({
   head: () => ({
