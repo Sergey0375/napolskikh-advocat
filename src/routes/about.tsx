@@ -31,6 +31,43 @@ const imageMap: Record<string, string> = {
   "doc-8": d8.url,
 };
 
+type Diploma = (typeof diplomas)[number];
+
+function DiplomaCard({
+  diploma,
+  onClick,
+}: {
+  diploma: Diploma;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={`Открыть документ: ${diploma.title}`}
+      className="panel-hover group flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-border/60 text-left transition-colors duration-200 hover:border-neon/40"
+    >
+      <span className="relative aspect-[4/3] w-full overflow-hidden bg-muted/40">
+        <img
+          src={imageMap[diploma.file]}
+          alt={`${diploma.title}, ${diploma.org}`}
+          loading="lazy"
+          className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
+        />
+      </span>
+      <span className="flex flex-col p-3">
+        <span className="text-[13px] font-medium leading-snug">{diploma.title}</span>
+        <span className="mt-1 text-[11px] leading-relaxed text-muted-foreground line-clamp-2">
+          {diploma.org}
+        </span>
+        <span className="mt-3 text-[11px] uppercase tracking-[0.18em] text-neon">
+          {diploma.year}
+        </span>
+      </span>
+    </button>
+  );
+}
+
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -168,31 +205,9 @@ function AboutPage() {
         lead="Подтверждённая квалификация: профильное образование, статус адвоката и регулярное повышение квалификации."
         tone="subtle"
       >
-        <div className="mt-12 grid gap-5 md:grid-cols-2">
+        <div className="mt-12 grid gap-3 md:grid-cols-2">
           {diplomas.slice(0, 2).map((d, i) => (
-            <button
-              key={d.title}
-              type="button"
-              onClick={() => setFull(i)}
-              aria-label={`Открыть документ: ${d.title}`}
-              className="panel panel-hover group flex flex-col overflow-hidden text-left"
-            >
-              <span className="relative aspect-[4/3] w-full overflow-hidden bg-muted/40">
-                <img
-                  src={imageMap[d.file]}
-                  alt={`${d.title}, ${d.org}`}
-                  loading="lazy"
-                  className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
-                />
-              </span>
-              <span className="flex flex-col p-5">
-                <span className="font-display text-[17px] leading-snug">{d.title}</span>
-                <span className="mt-2 text-sm leading-relaxed text-muted-foreground">{d.org}</span>
-                <span className="mt-4 text-[11px] uppercase tracking-[0.2em] text-neon">
-                  {d.year}
-                </span>
-              </span>
-            </button>
+            <DiplomaCard key={d.title} diploma={d} onClick={() => setFull(i)} />
           ))}
         </div>
 
@@ -207,30 +222,7 @@ function AboutPage() {
                 key={d.title}
                 className="basis-[70%] pl-3 sm:basis-[45%] lg:basis-1/4"
               >
-                <button
-                  type="button"
-                  onClick={() => setFull(i + 2)}
-                  aria-label={`Открыть документ: ${d.title}`}
-                  className="panel-hover group flex h-full w-full flex-col overflow-hidden rounded-[10px] border border-border/60 text-left transition-colors duration-200 hover:border-neon/40"
-                >
-                  <span className="relative aspect-[4/3] w-full overflow-hidden bg-muted/40">
-                    <img
-                      src={imageMap[d.file]}
-                      alt={`${d.title}, ${d.org}`}
-                      loading="lazy"
-                      className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
-                    />
-                  </span>
-                  <span className="flex flex-col p-3">
-                    <span className="text-[13px] font-medium leading-snug">{d.title}</span>
-                    <span className="mt-1 text-[11px] leading-relaxed text-muted-foreground line-clamp-2">
-                      {d.org}
-                    </span>
-                    <span className="mt-3 text-[11px] uppercase tracking-[0.18em] text-neon">
-                      {d.year}
-                    </span>
-                  </span>
-                </button>
+                <DiplomaCard diploma={d} onClick={() => setFull(i + 2)} />
               </CarouselItem>
             ))}
           </CarouselContent>
