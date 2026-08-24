@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { cases, site, SITE_URL } from "@/data/site";
+import { cases, site, SITE_URL, OG_IMAGE } from "@/data/site";
 import { Section, CTASection } from "@/components/site/Section";
 import { CaseCard } from "@/components/site/cards";
 
@@ -18,9 +18,15 @@ export const Route = createFileRoute("/cases")({
         property: "og:description",
         content: "Результаты по делам бизнеса, арбитража, семейных и экономических споров.",
       },
-      { property: "og:url", content: `${SITE_URL}/cases` },
+      { property: "og:url", content: `${SITE_URL}/cases/` },
+      { property: "og:type", content: "website" },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "628" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: OG_IMAGE },
     ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/cases` }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/cases/` }],
   }),
   component: CasesPage,
 });
