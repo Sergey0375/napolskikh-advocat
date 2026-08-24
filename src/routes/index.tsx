@@ -26,8 +26,6 @@ export const Route = createFileRoute("/")({
         content:
           "Защита бизнеса, недвижимости и семьи: арбитраж, сделки, споры с госорганами, семейные и наследственные дела.",
       },
-      { property: "og:type", content: "website" },
-
       { property: "og:url", content: `${SITE_URL}/` },
       { property: "og:type", content: "website" },
       { property: "og:image", content: OG_IMAGE },
