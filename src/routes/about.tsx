@@ -205,9 +205,13 @@ function AboutPage() {
         lead="Подтверждённая квалификация: профильное образование, статус адвоката и регулярное повышение квалификации."
         tone="subtle"
       >
-        <div className="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:mx-auto lg:max-w-[50%]">
+        <div className="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:mx-auto lg:max-w-[calc(50%-0.375rem)]">
           {diplomas.slice(0, 2).map((d, i) => (
-            <DiplomaCard key={d.title} diploma={d} onClick={() => setFull(i)} />
+            <div key={d.title} className="flex justify-center sm:block">
+              <div className="w-full max-w-[70%] sm:max-w-full">
+                <DiplomaCard diploma={d} onClick={() => setFull(i)} />
+              </div>
+            </div>
           ))}
         </div>
 
